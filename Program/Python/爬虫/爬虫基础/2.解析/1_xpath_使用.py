@@ -21,7 +21,7 @@
 from lxml import etree
 
 # 解析本地文件
-tree = etree.parse('F:\PROGRAMMING\MyCode\Program\Python\爬虫\\1_html结构.html')
+tree = etree.parse('Program\Python\爬虫\\1_html结构.html')
 
 # xpath路径
 # 查找ul下面的li
@@ -53,4 +53,4 @@ print(li_list)
 
 
 # 解析网络文件
-html_tree = etree.HTML()
+# html_tree = etree.HTML()
