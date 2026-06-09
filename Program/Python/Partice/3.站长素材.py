@@ -82,7 +82,7 @@ def analyze_data(content):
             resp = urllib.request.urlopen(req, context=ssl_context)
             
             # 保存图片
-            folder_path = '/Users/ken/Program/Python/Partice/City_img'
+            folder_path = 'Program\Python\Partice\city_img'
             file_path = os.path.join(folder_path, name)
             with open(file_path, 'wb') as f:
                 f.write(resp.read())
