@@ -21,7 +21,7 @@
 from lxml import etree
 
 # 解析本地文件
-tree = etree.parse('/Users/ken/Program/Python/爬虫/1_html结构.html')
+tree = etree.parse('F:\PROGRAMMING\MyCode\Program\Python\爬虫\\1_html结构.html')
 
 # xpath路径
 # 查找ul下面的li
