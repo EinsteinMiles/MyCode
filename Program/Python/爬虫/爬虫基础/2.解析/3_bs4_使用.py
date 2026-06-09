@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 # 通过解析本地来件来学习基础语法
 # 加载文件,默认打开的文件编码格式是gbk
-soup = BeautifulSoup(open('Program\Python\爬虫\爬虫基础\\2.解析\\3.bs4.html','r',encoding='utf-8'),'lxml')
+soup = BeautifulSoup(open('Python/爬虫/爬虫基础/2.解析/3.bs4.html','r',encoding='utf-8'),'lxml')
 
 # 根据标签名查找节点
 # 找到是第一个符合条件的数据

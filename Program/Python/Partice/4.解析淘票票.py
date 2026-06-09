@@ -17,14 +17,14 @@ content = response.read().decode('utf-8')
 
 content = content.split('(')[1].split(')')[0]
 
-file_path = 'Program\Python\Partice'
+file_path = 'Python/Partice'
 name = '4.taopp.json'
-file_path = os.path.join(file_path, name)
+file_path = os.path.join(file_path,name)
 
 with open(file_path,'w',encoding='utf=8') as fp:
     fp.write(content)
 
-obj = json.load(open('Program\Python\Partice\\4.taopp.json','r',encoding='utf-8'))
+obj = json.load(open('Python/Partice/4.taopp.json','r',encoding='utf-8'))
 region_name = jsonpath.jsonpath(obj,'$..regionName')
 
 print(region_name)
