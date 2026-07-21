@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中芯国际(688981) 财报分析报告</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "PingFang SC", "Heiti SC", "Microsoft YaHei", sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .header {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .header h1 { font-size: 28px; margin-bottom: 8px; }
+        .header .subtitle { font-size: 14px; opacity: 0.85; }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .indicator-card {
+            background: white;
+            border-radius: 10px;
+            padding: 16px 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .indicator-label { font-size: 12px; color: #666; margin-bottom: 6px; }
+        .indicator-value { font-size: 22px; font-weight: 700; }
+        .chart-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .chart-section h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #1a237e;
+            border-left: 4px solid #1a237e;
+            padding-left: 12px;
+        }
+        .chart-img { width: 100%; height: auto; border-radius: 6px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        th, td {
+            padding: 10px 8px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background: #1a237e;
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        tr:hover { background: #f5f5f5; }
+        .conclusion {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .conclusion h2 {
+            font-size: 20px;
+            color: #1a237e;
+            margin-bottom: 15px;
+        }
+        .conclusion h3 {
+            font-size: 16px;
+            color: #283593;
+            margin: 15px 0 8px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+        @media print {
+            body { background: white; }
+            .chart-section, .indicator-card, .conclusion { box-shadow: none; break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>中芯国际 (688981)</h1>
+            <div class="subtitle">
+                财报分析报告 | 数据年份: 2025 | 生成时间: 2026-07-17 11:53
+            </div>
+        </div>
+
+        <!-- 关键指标卡片 -->
+        <h2 style="margin-bottom:12px;color:#1a237e;">📊 关键财务指标</h2>
+        <div class="kpi-grid">
+            
+        <div class="indicator-card">
+            <div class="indicator-label">ROE</div>
+            <div class="indicator-value" style="color:#F44336">3.40%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">ROA</div>
+            <div class="indicator-value" style="color:#FF9800">2.90%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">毛利率</div>
+            <div class="indicator-value" style="color:#FF9800">21.62%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">净利率</div>
+            <div class="indicator-value" style="color:#4CAF50">10.71%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">营收增长率</div>
+            <div class="indicator-value" style="color:#4CAF50">16.49%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">净利润增长率</div>
+            <div class="indicator-value" style="color:#2E7D32">36.29%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">资产负债率</div>
+            <div class="indicator-value" style="color:#333">33.00%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">流动比率</div>
+            <div class="indicator-value" style="color:#2E7D32">2.36</div>
+        </div>
+        
+        </div>
+
+        <!-- 历史数据表 -->
+        <div class="chart-section">
+            <h2>📋 历年财务数据一览</h2>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr><th>年份</th><th>营收(亿)</th><th>净利润(亿)</th><th>ROE(%)</th><th>ROA(%)</th><th>毛利率(%)</th><th>净利率(%)</th><th>营收增长(%)</th><th>净利增长(%)</th><th>负债率(%)</th><th>流动比率</th><th>资产周转率</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2016</td><td style="color:#333;font-weight:bold">202.95</td><td style="color:#333;font-weight:bold">21.95</td><td style="color:#F44336;font-weight:bold">0.00</td><td style="color:#FF9800;font-weight:bold">3.69</td><td style="color:#FF9800;font-weight:bold">29.16</td><td style="color:#4CAF50;font-weight:bold">10.86</td><td style="color:#2E7D32;font-weight:bold">37.49</td><td style="color:#2E7D32;font-weight:bold">58.77</td><td style="color:#333;font-weight:bold">46.58</td><td style="color:#4CAF50;font-weight:bold">1.86</td><td style="color:#FF9800;font-weight:bold">0.35</td></tr><tr><td>2017</td><td style="color:#333;font-weight:bold">213.90</td><td style="color:#333;font-weight:bold">9.03</td><td style="color:#F44336;font-weight:bold">4.26</td><td style="color:#F44336;font-weight:bold">1.59</td><td style="color:#FF9800;font-weight:bold">24.76</td><td style="color:#F44336;font-weight:bold">4.22</td><td style="color:#FF9800;font-weight:bold">5.40</td><td style="color:#F44336;font-weight:bold">-52.35</td><td style="color:#333;font-weight:bold">43.58</td><td style="color:#2E7D32;font-weight:bold">2.43</td><td style="color:#F44336;font-weight:bold">0.29</td></tr><tr><td>2018</td><td style="color:#333;font-weight:bold">230.17</td><td style="color:#333;font-weight:bold">3.60</td><td style="color:#F44336;font-weight:bold">1.99</td><td style="color:#F44336;font-weight:bold">0.81</td><td style="color:#FF9800;font-weight:bold">23.02</td><td style="color:#F44336;font-weight:bold">1.57</td><td style="color:#FF9800;font-weight:bold">7.61</td><td style="color:#F44336;font-weight:bold">-39.98</td><td style="color:#333;font-weight:bold">38.18</td><td style="color:#2E7D32;font-weight:bold">2.39</td><td style="color:#F44336;font-weight:bold">0.26</td></tr><tr><td>2019</td><td style="color:#333;font-weight:bold">220.18</td><td style="color:#333;font-weight:bold">12.69</td><td style="color:#F44336;font-weight:bold">4.25</td><td style="color:#F44336;font-weight:bold">1.75</td><td style="color:#FF9800;font-weight:bold">20.83</td><td style="color:#FF9800;font-weight:bold">5.76</td><td style="color:#F44336;font-weight:bold">-4.34</td><td style="color:#2E7D32;font-weight:bold">140.04</td><td style="color:#333;font-weight:bold">37.94</td><td style="color:#2E7D32;font-weight:bold">2.39</td><td style="color:#F44336;font-weight:bold">0.21</td></tr><tr><td>2020</td><td style="color:#333;font-weight:bold">274.71</td><td style="color:#333;font-weight:bold">40.21</td><td style="color:#FF9800;font-weight:bold">6.50</td><td style="color:#FF9800;font-weight:bold">3.13</td><td style="color:#FF9800;font-weight:bold">23.78</td><td style="color:#4CAF50;font-weight:bold">14.64</td><td style="color:#4CAF50;font-weight:bold">24.77</td><td style="color:#2E7D32;font-weight:bold">141.52</td><td style="color:#333;font-weight:bold">30.77</td><td style="color:#2E7D32;font-weight:bold">4.20</td><td style="color:#F44336;font-weight:bold">0.17</td></tr><tr><td>2021</td><td style="color:#333;font-weight:bold">356.31</td><td style="color:#333;font-weight:bold">112.03</td><td style="color:#4CAF50;font-weight:bold">10.30</td><td style="color:#4CAF50;font-weight:bold">5.66</td><td style="color:#FF9800;font-weight:bold">29.31</td><td style="color:#2E7D32;font-weight:bold">31.44</td><td style="color:#4CAF50;font-weight:bold">29.70</td><td style="color:#2E7D32;font-weight:bold">147.75</td><td style="color:#333;font-weight:bold">29.56</td><td style="color:#2E7D32;font-weight:bold">3.58</td><td style="color:#F44336;font-weight:bold">0.16</td></tr><tr><td>2022</td><td style="color:#333;font-weight:bold">495.16</td><td style="color:#333;font-weight:bold">146.54</td><td style="color:#4CAF50;font-weight:bold">10.00</td><td style="color:#4CAF50;font-weight:bold">5.84</td><td style="color:#4CAF50;font-weight:bold">38.30</td><td style="color:#2E7D32;font-weight:bold">29.59</td><td style="color:#2E7D32;font-weight:bold">38.97</td><td style="color:#FF9800;font-weight:bold">13.04</td><td style="color:#333;font-weight:bold">33.89</td><td style="color:#2E7D32;font-weight:bold">2.42</td><td style="color:#F44336;font-weight:bold">0.19</td></tr><tr><td>2023</td><td style="color:#333;font-weight:bold">452.50</td><td style="color:#333;font-weight:bold">63.96</td><td style="color:#F44336;font-weight:bold">3.50</td><td style="color:#FF9800;font-weight:bold">2.59</td><td style="color:#FF9800;font-weight:bold">21.89</td><td style="color:#4CAF50;font-weight:bold">14.14</td><td style="color:#F44336;font-weight:bold">-8.61</td><td style="color:#F44336;font-weight:bold">-60.25</td><td style="color:#333;font-weight:bold">35.45</td><td style="color:#4CAF50;font-weight:bold">1.84</td><td style="color:#F44336;font-weight:bold">0.14</td></tr><tr><td>2024</td><td style="color:#333;font-weight:bold">577.96</td><td style="color:#333;font-weight:bold">53.73</td><td style="color:#F44336;font-weight:bold">2.50</td><td style="color:#FF9800;font-weight:bold">2.43</td><td style="color:#FF9800;font-weight:bold">18.59</td><td style="color:#FF9800;font-weight:bold">9.30</td><td style="color:#4CAF50;font-weight:bold">27.72</td><td style="color:#F44336;font-weight:bold">-23.31</td><td style="color:#333;font-weight:bold">35.17</td><td style="color:#4CAF50;font-weight:bold">1.73</td><td style="color:#F44336;font-weight:bold">0.17</td></tr><tr><td>2025</td><td style="color:#333;font-weight:bold">673.23</td><td style="color:#333;font-weight:bold">72.09</td><td style="color:#F44336;font-weight:bold">3.40</td><td style="color:#FF9800;font-weight:bold">2.90</td><td style="color:#FF9800;font-weight:bold">21.62</td><td style="color:#4CAF50;font-weight:bold">10.71</td><td style="color:#4CAF50;font-weight:bold">16.49</td><td style="color:#2E7D32;font-weight:bold">36.29</td><td style="color:#333;font-weight:bold">33.00</td><td style="color:#2E7D32;font-weight:bold">2.36</td><td style="color:#F44336;font-weight:bold">0.19</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 图表 -->
+        
+                <div class="chart-section">
+                    <h2>营收与利润趋势</h2>
+                    <img src="revenue_profit_trend.png" alt="营收与利润趋势" class="chart-img">
+                </div>
+                
+                <div class="chart-section">
+                    <h2>盈利能力指标</h2>
+                    <img src="profitability.png" alt="盈利能力指标" class="chart-img">
+                </div>
+                
+                <div class="chart-section">
+                    <h2>成长能力指标</h2>
+                    <img src="growth.png" alt="成长能力指标" class="chart-img">
+                </div>
+                
+                <div class="chart-section">
+                    <h2>财务健康度雷达</h2>
+                    <img src="health_radar.png" alt="财务健康度雷达" class="chart-img">
+                </div>
+                
+                <div class="chart-section">
+                    <h2>杜邦分析</h2>
+                    <img src="dupont.png" alt="杜邦分析" class="chart-img">
+                </div>
+                
+                <div class="chart-section">
+                    <h2>资产负债结构</h2>
+                    <img src="balance_structure.png" alt="资产负债结构" class="chart-img">
+                </div>
+                
+
+        <!-- 分析结论 -->
+        <div class="conclusion">
+            <h2>中芯国际 财务分析结论<br><br>**综合评分**: 61.1/100 (良好)<br><br><h3>盈利能力<br>- **ROE**: 3.4%（danger）<br>- **ROA**: 2.9%<br>- **毛利率**: 21.6%<br>- **净利率**: 10.7%<br><br><h3>成长能力<br>- **营收增长率**: 16.5%（趋势: 显著下降 ↓）<br>- **净利润增长率**: 36.3%（趋势: 显著下降 ↓）<br><br><h3>偿债能力<br>- **资产负债率**: 33.0%（unknown）<br>- **流动比率**: 2.36<br>- **速动比率**: 1.81<br><br><h3>营运能力<br>- **总资产周转率**: 0.19<br>- **存货周转率**: 2.25<br><br><h3>核心数据<br>- **营业收入**: 673.23 亿<br>- **净利润**: 72.09 亿<br>- **净资产**: 2463.62 亿
+        </div>
+
+        <!-- 页脚 -->
+        <div class="footer">
+            本报告由财报分析工具自动生成 | 数据来源: 东方财富 / akshare | 仅供参考，不构成投资建议
+        </div>
+    </div>
+</body>
+</html>
