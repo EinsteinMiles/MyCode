@@ -26,6 +26,9 @@ class ReportAnalyzer:
     # 单指标健康度判定
     # ------------------------------------------------------------------
 
+    # 越低越好的指标（如负债率）
+    LOWER_IS_BETTER = {"debt_ratio"}
+
     def classify_indicator(self, name: str, value: float) -> Tuple[str, str]:
         """
         对单个指标进行分类判定
@@ -39,20 +42,24 @@ class ReportAnalyzer:
         if threshold is None:
             return ("unknown", "gray")
 
-        # 优秀阈值
-        if value >= threshold.get("excellent", float("inf")):
-            return ("excellent", "#2E7D32")   # 深绿
-
-        # 健康阈值
-        if value >= threshold.get("healthy", 0):
-            return ("healthy", "#4CAF50")      # 绿
-
-        # 警告阈值
-        if value >= threshold.get("warning", float("-inf")):
-            return ("warning", "#FF9800")      # 橙
-
-        # 危险
-        return ("danger", "#F44336")           # 红
+        if name in self.LOWER_IS_BETTER:
+            # 越低越好：value <= excellent 为优秀
+            if value <= threshold.get("excellent", -float("inf")):
+                return ("excellent", "#2E7D32")
+            if value <= threshold.get("healthy", float("inf")):
+                return ("healthy", "#4CAF50")
+            if value <= threshold.get("warning", float("inf")):
+                return ("warning", "#FF9800")
+            return ("danger", "#F44336")
+        else:
+            # 越高越好
+            if value >= threshold.get("excellent", float("inf")):
+                return ("excellent", "#2E7D32")
+            if value >= threshold.get("healthy", 0):
+                return ("healthy", "#4CAF50")
+            if value >= threshold.get("warning", float("-inf")):
+                return ("warning", "#FF9800")
+            return ("danger", "#F44336")
 
     @staticmethod
     def classify_pe(pe_value: float) -> Tuple[str, str]:

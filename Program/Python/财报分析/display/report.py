@@ -26,6 +26,9 @@ class ReportBuilder:
     # 辅助方法
     # ------------------------------------------------------------------
 
+    # 越低越好的指标
+    LOWER_IS_BETTER = {"debt_ratio"}
+
     @staticmethod
     def _color_for_value(name: str, value: float) -> str:
         """根据指标名称和值返回颜色"""
@@ -34,13 +37,22 @@ class ReportBuilder:
         threshold = THRESHOLDS.get(name, {})
         if not threshold:
             return "#333"
-        if value >= threshold.get("excellent", float("inf")):
-            return "#2E7D32"
-        if value >= threshold.get("healthy", 0):
-            return "#4CAF50"
-        if value >= threshold.get("warning", float("-inf")):
-            return "#FF9800"
-        return "#F44336"
+        if name in ReportBuilder.LOWER_IS_BETTER:
+            if value <= threshold.get("excellent", -float("inf")):
+                return "#2E7D32"
+            if value <= threshold.get("healthy", float("inf")):
+                return "#4CAF50"
+            if value <= threshold.get("warning", float("inf")):
+                return "#FF9800"
+            return "#F44336"
+        else:
+            if value >= threshold.get("excellent", float("inf")):
+                return "#2E7D32"
+            if value >= threshold.get("healthy", 0):
+                return "#4CAF50"
+            if value >= threshold.get("warning", float("-inf")):
+                return "#FF9800"
+            return "#F44336"
 
     @staticmethod
     def _format_value(value, fmt: str = ".2f") -> str:
@@ -98,6 +110,14 @@ class ReportBuilder:
 
         latest = indicators.iloc[-1]
         report_year = latest.get("year", datetime.now().year)
+
+        # 年份区间
+        years = indicators["year"].dropna().astype(int)
+        year_start, year_end = int(years.min()), int(years.max())
+        year_range = f"{year_start}-{year_end}" if year_start != year_end else str(year_start)
+
+        # 文件名: 公司名+财报分析报告+年份区间
+        report_filename = f"{company_name}财报分析报告{year_range}"
 
         # 提取图表文件名
         chart_names = {os.path.basename(f).replace(".png", ""): os.path.basename(f) for f in chart_files}
@@ -174,7 +194,7 @@ class ReportBuilder:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{company_name}({stock_code}) 财报分析报告</title>
+    <title>{report_filename}</title>
     <style>
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         body {{
@@ -301,9 +321,9 @@ class ReportBuilder:
     <div class="container">
         <!-- 头部 -->
         <div class="header">
-            <h1>{company_name} ({stock_code})</h1>
+            <h1>{report_filename}</h1>
             <div class="subtitle">
-                财报分析报告 | 数据年份: {int(report_year)} | 生成时间: {datetime.now().strftime('%Y-%m-%d %H:%M')}
+                股票代码: {stock_code} | 数据区间: {year_range}
             </div>
         </div>
 
@@ -362,7 +382,7 @@ class ReportBuilder:
 
         // 尝试服务端生成
         var formData = new FormData();
-        formData.append('filename', '{stock_code}_{company_name}_财报分析报告.html');
+        formData.append('filename', '{report_filename}.html');
 
         fetch('/download-pdf', {{
             method: 'POST',
@@ -383,7 +403,7 @@ class ReportBuilder:
             var url = window.URL.createObjectURL(blob);
             var a = document.createElement('a');
             a.href = url;
-            a.download = '{stock_code}_{company_name}_财报分析报告.pdf';
+            a.download = '{report_filename}.pdf';
             document.body.appendChild(a);
             a.click();
             a.remove();
@@ -402,7 +422,7 @@ class ReportBuilder:
 </html>"""
 
         # 保存 HTML
-        filename = f"{stock_code}_{company_name}_财报分析报告.html"
+        filename = f"{report_filename}.html"
         filepath = os.path.join(self.output_dir, filename)
         with open(filepath, "w", encoding="utf-8") as f:
             f.write(html)

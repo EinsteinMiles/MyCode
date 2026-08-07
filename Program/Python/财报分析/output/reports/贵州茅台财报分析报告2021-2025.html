@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贵州茅台财报分析报告2021-2025</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "PingFang SC", "Heiti SC", "Microsoft YaHei", sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .header {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .header h1 { font-size: 28px; margin-bottom: 8px; }
+        .header .subtitle { font-size: 14px; opacity: 0.85; }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .indicator-card {
+            background: white;
+            border-radius: 10px;
+            padding: 16px 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .indicator-label { font-size: 12px; color: #666; margin-bottom: 6px; }
+        .indicator-value { font-size: 22px; font-weight: 700; }
+        .chart-section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .chart-section h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #1a237e;
+            border-left: 4px solid #1a237e;
+            padding-left: 12px;
+        }
+        .chart-img { width: 100%; height: auto; border-radius: 6px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        th, td {
+            padding: 10px 8px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background: #1a237e;
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        tr:hover { background: #f5f5f5; }
+        .conclusion {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .conclusion h2 {
+            font-size: 20px;
+            color: #1a237e;
+            margin-bottom: 15px;
+        }
+        .conclusion h3 {
+            font-size: 16px;
+            color: #283593;
+            margin: 15px 0 8px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 12px;
+        }
+        /* PDF 导出工具栏 - 页面底部 */
+        .toolbar {
+            text-align: center;
+            padding: 30px 0;
+            margin: 20px 0;
+            display: flex; gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .toolbar button {
+            padding: 12px 32px; border: none; border-radius: 10px;
+            font-size: 15px; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .btn-pdf {
+            background: #1a237e; color: white;
+        }
+        .btn-pdf:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(26,35,126,0.4); }
+        .btn-back {
+            background: white; color: #1a237e; border: 1px solid #ccc !important;
+        }
+        @media print {
+            body { background: white; }
+            .toolbar { display: none !important; }
+            .chart-section, .indicator-card, .conclusion { box-shadow: none; break-inside: avoid; }
+            .chart-section { page-break-inside: avoid; }
+            .header { background: #1a237e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            th { background: #1a237e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>贵州茅台财报分析报告2021-2025</h1>
+            <div class="subtitle">
+                股票代码: 600519 | 数据区间: 2021-2025 | 生成时间: 2026-08-06 17:04
+            </div>
+        </div>
+
+        <!-- 关键指标卡片 -->
+        <h2 style="margin-bottom:12px;color:#1a237e;">📊 关键财务指标</h2>
+        <div class="kpi-grid">
+            
+        <div class="indicator-card">
+            <div class="indicator-label">ROE</div>
+            <div class="indicator-value" style="color:#2E7D32">32.53%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">ROA</div>
+            <div class="indicator-value" style="color:#2E7D32">38.08%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">毛利率</div>
+            <div class="indicator-value" style="color:#2E7D32">91.18%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">净利率</div>
+            <div class="indicator-value" style="color:#2E7D32">50.53%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">营收增长率</div>
+            <div class="indicator-value" style="color:#F44336">-1.20%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">净利润增长率</div>
+            <div class="indicator-value" style="color:#F44336">-4.53%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">资产负债率</div>
+            <div class="indicator-value" style="color:#2E7D32">16.42%</div>
+        </div>
+        
+        <div class="indicator-card">
+            <div class="indicator-label">流动比率</div>
+            <div class="indicator-value" style="color:#2E7D32">5.09</div>
+        </div>
+        
+        </div>
+
+        <!-- 历史数据表 -->
+        <div class="chart-section">
+            <h2>📋 历年财务数据一览</h2>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr><th>年份</th><th>营收(亿)</th><th>净利润(亿)</th><th>ROE(%)</th><th>ROA(%)</th><th>毛利率(%)</th><th>净利率(%)</th><th>营收增长(%)</th><th>净利增长(%)</th><th>负债率(%)</th><th>流动比率</th><th>资产周转率</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>2021</td><td style="color:#333;font-weight:bold">1094.64</td><td style="color:#333;font-weight:bold">557.21</td><td style="color:#2E7D32;font-weight:bold">29.90</td><td style="color:#2E7D32;font-weight:bold">31.82</td><td style="color:#2E7D32;font-weight:bold">91.54</td><td style="color:#2E7D32;font-weight:bold">52.47</td><td style="color:#FF9800;font-weight:bold">11.71</td><td style="color:#FF9800;font-weight:bold">12.34</td><td style="color:#2E7D32;font-weight:bold">22.81</td><td style="color:#2E7D32;font-weight:bold">3.81</td><td style="color:#FF9800;font-weight:bold">0.47</td></tr><tr><td>2022</td><td style="color:#333;font-weight:bold">1275.54</td><td style="color:#333;font-weight:bold">653.76</td><td style="color:#2E7D32;font-weight:bold">30.26</td><td style="color:#2E7D32;font-weight:bold">34.43</td><td style="color:#2E7D32;font-weight:bold">91.87</td><td style="color:#2E7D32;font-weight:bold">52.68</td><td style="color:#4CAF50;font-weight:bold">16.53</td><td style="color:#4CAF50;font-weight:bold">19.55</td><td style="color:#2E7D32;font-weight:bold">19.42</td><td style="color:#2E7D32;font-weight:bold">4.41</td><td style="color:#4CAF50;font-weight:bold">0.50</td></tr><tr><td>2023</td><td style="color:#333;font-weight:bold">1505.60</td><td style="color:#333;font-weight:bold">775.21</td><td style="color:#2E7D32;font-weight:bold">34.19</td><td style="color:#2E7D32;font-weight:bold">39.33</td><td style="color:#2E7D32;font-weight:bold">91.96</td><td style="color:#2E7D32;font-weight:bold">52.49</td><td style="color:#4CAF50;font-weight:bold">18.04</td><td style="color:#4CAF50;font-weight:bold">19.16</td><td style="color:#2E7D32;font-weight:bold">17.98</td><td style="color:#2E7D32;font-weight:bold">4.62</td><td style="color:#4CAF50;font-weight:bold">0.57</td></tr><tr><td>2024</td><td style="color:#333;font-weight:bold">1741.44</td><td style="color:#333;font-weight:bold">893.35</td><td style="color:#2E7D32;font-weight:bold">36.02</td><td style="color:#2E7D32;font-weight:bold">41.86</td><td style="color:#2E7D32;font-weight:bold">91.93</td><td style="color:#2E7D32;font-weight:bold">52.27</td><td style="color:#4CAF50;font-weight:bold">15.66</td><td style="color:#4CAF50;font-weight:bold">15.38</td><td style="color:#2E7D32;font-weight:bold">19.04</td><td style="color:#2E7D32;font-weight:bold">4.45</td><td style="color:#4CAF50;font-weight:bold">0.61</td></tr><tr><td>2025</td><td style="color:#333;font-weight:bold">1720.54</td><td style="color:#333;font-weight:bold">853.10</td><td style="color:#2E7D32;font-weight:bold">32.53</td><td style="color:#2E7D32;font-weight:bold">38.08</td><td style="color:#2E7D32;font-weight:bold">91.18</td><td style="color:#2E7D32;font-weight:bold">50.53</td><td style="color:#F44336;font-weight:bold">-1.20</td><td style="color:#F44336;font-weight:bold">-4.53</td><td style="color:#2E7D32;font-weight:bold">16.42</td><td style="color:#2E7D32;font-weight:bold">5.09</td><td style="color:#4CAF50;font-weight:bold">0.57</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 图表 -->
+        
+                <div class="chart-section">
+                    <h2>营收与利润趋势</h2>
+                    <img src="revenue_profit_trend.png" alt="营收与利润趋势" class="chart-img">
+                </div>
+                
+                <div class="chart-section">
+                    <h2>盈利能力指标</h2>
+                    <img src="profitability.png" alt="盈利能力指标" class="chart-img">
+                </div>
+                
+                <div class="chart-section">
+                    <h2>成长能力指标</h2>
+                    <img src="growth.png" alt="成长能力指标" class="chart-img">
+                </div>
+                
+                <div class="chart-section">
+                    <h2>财务健康度雷达</h2>
+                    <img src="health_radar.png" alt="财务健康度雷达" class="chart-img">
+                </div>
+                
+                <div class="chart-section">
+                    <h2>杜邦分析</h2>
+                    <img src="dupont.png" alt="杜邦分析" class="chart-img">
+                </div>
+                
+                <div class="chart-section">
+                    <h2>资产负债结构</h2>
+                    <img src="balance_structure.png" alt="资产负债结构" class="chart-img">
+                </div>
+                
+
+        <!-- 分析结论 -->
+        <div class="conclusion">
+            <h2>贵州茅台 财务分析结论<br><br>**综合评分**: 77.5/100 (良好)<br><br><h3>盈利能力<br>- **ROE**: 32.5%（excellent）<br>- **ROA**: 38.1%<br>- **毛利率**: 91.2%<br>- **净利率**: 50.5%<br><br><h3>成长能力<br>- **营收增长率**: -1.2%（趋势: 显著下降 ↓）<br>- **净利润增长率**: -4.5%（趋势: 显著下降 ↓）<br><br><h3>偿债能力<br>- **资产负债率**: 16.4%（excellent）<br>- **流动比率**: 5.09<br>- **速动比率**: 3.85<br><br><h3>营运能力<br>- **总资产周转率**: 0.57<br>- **存货周转率**: 0.26<br><br><h3>核心数据<br>- **营业收入**: 1720.54 亿<br>- **净利润**: 853.10 亿<br>- **净资产**: 2539.59 亿
+        </div>
+
+        <!-- PDF 导出工具栏 -->
+        <div class="toolbar">
+            <button class="btn-pdf" onclick="printPDF()">🖨️ 打印 PDF</button>
+            <button class="btn-pdf" onclick="downloadPDF()" id="btnDownload">📥 下载 PDF</button>
+            <button class="btn-back" onclick="history.back()">← 返回查询</button>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="footer">
+            本报告由财报分析工具自动生成 | 数据来源: 东方财富 / akshare | 仅供参考，不构成投资建议
+        </div>
+    </div>
+
+    <script>
+    function printPDF() {
+        // 浏览器打印 → macOS 可选"另存为 PDF"
+        window.print();
+    }
+
+    function downloadPDF() {
+        var btn = document.getElementById('btnDownload');
+        btn.textContent = '⏳ 生成中...';
+        btn.disabled = true;
+
+        // 尝试服务端生成
+        var formData = new FormData();
+        formData.append('filename', '贵州茅台财报分析报告2021-2025.html');
+
+        fetch('/download-pdf', {
+            method: 'POST',
+            body: formData
+        })
+        .then(function(resp) {
+            if (!resp.ok) {
+                // 服务端失败 → 降级为浏览器打印
+                btn.textContent = '📥 下载 PDF';
+                btn.disabled = false;
+                alert('服务端 PDF 生成失败，请使用"打印 PDF"按钮，在打印对话框中选择"另存为 PDF"');
+                return;
+            }
+            return resp.blob();
+        })
+        .then(function(blob) {
+            if (!blob) return;
+            var url = window.URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = '贵州茅台财报分析报告2021-2025.pdf';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+            btn.textContent = '✅ 下载完成';
+            btn.disabled = false;
+        })
+        .catch(function() {
+            btn.textContent = '📥 下载 PDF';
+            btn.disabled = false;
+            alert('下载失败，请使用"打印 PDF"按钮');
+        });
+    }
+    </script>
+</body>
+</html>

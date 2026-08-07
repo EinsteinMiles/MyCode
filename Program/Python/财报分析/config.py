@@ -129,7 +129,7 @@ THRESHOLDS = {
     "net_margin": {"excellent": 20, "healthy": 10, "warning": 5},
 
     # 偿债能力
-    "debt_to_equity": {"excellent": 50, "healthy": 100, "warning": 200},  # 资产负债率(%)
+    "debt_ratio": {"excellent": 50, "healthy": 100, "warning": 200},  # 资产负债率(%)
     "current_ratio": {"excellent": 2.0, "healthy": 1.5, "warning": 1.0},    # 流动比率
     "quick_ratio": {"excellent": 1.5, "healthy": 1.0, "warning": 0.5},      # 速动比率
 

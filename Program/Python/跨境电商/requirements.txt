@@ -1,0 +1,9 @@
+DrissionPage>=4.0
+nltk>=3.8
+pandas>=2.0
+matplotlib>=3.7
+jinja2>=3.1
+openpyxl>=3.1
+weasyprint>=60
+wordcloud>=1.9
+numpy>=1.24

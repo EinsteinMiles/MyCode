@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>选品分析报告</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: "PingFang SC", "Heiti SC", "Microsoft YaHei", sans-serif;
+        color: #333; background: #f5f7fa;
+        line-height: 1.6; padding: 20px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .header {
+        background: linear-gradient(135deg, #4A90D9, #357ABD);
+        color: white; padding: 30px 40px; border-radius: 12px 12px 0 0;
+    }
+    .header h1 { font-size: 24px; margin-bottom: 8px; }
+    .header .meta { font-size: 14px; opacity: 0.85; }
+    .card {
+        background: white; border-radius: 0 0 12px 12px;
+        padding: 30px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .card-title {
+        font-size: 18px; font-weight: bold; margin-bottom: 20px;
+        padding-bottom: 10px; border-bottom: 2px solid #4A90D9;
+    }
+    table {
+        width: 100%; border-collapse: collapse; margin: 15px 0;
+        font-size: 13px;
+    }
+    th {
+        background: #4A90D9; color: white; padding: 12px 10px;
+        text-align: left; font-weight: 500;
+    }
+    td { padding: 10px; border-bottom: 1px solid #eee; }
+    tr:hover { background: #f8f9fa; }
+    .chart-img {
+        max-width: 100%; height: auto; margin: 15px 0;
+        border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .alert { padding: 12px 16px; border-radius: 6px; margin: 10px 0; font-size: 14px; }
+    .alert-danger { background: #FFF5F5; border-left: 4px solid #DC3545; color: #C53030; }
+    .alert-success { background: #F0FFF4; border-left: 4px solid #28A745; color: #276749; }
+    .alert-warning { background: #FFFFF0; border-left: 4px solid #FFC107; color: #975A16; }
+    .badge {
+        display: inline-block; padding: 3px 10px; border-radius: 12px;
+        font-size: 12px; font-weight: 500;
+    }
+    .badge-success { background: #C6F6D5; color: #276749; }
+    .badge-danger { background: #FED7D7; color: #C53030; }
+    .badge-warning { background: #FEFCBF; color: #975A16; }
+    .kpi-row { display: flex; gap: 20px; margin: 20px 0; flex-wrap: wrap; }
+    .kpi-card {
+        flex: 1; min-width: 150px; background: #f8f9fa;
+        padding: 20px; border-radius: 8px; text-align: center;
+    }
+    .kpi-value { font-size: 28px; font-weight: bold; color: #4A90D9; }
+    .kpi-label { font-size: 13px; color: #666; margin-top: 4px; }
+    .footer {
+        text-align: center; padding: 20px; color: #999; font-size: 12px;
+    }
+    @media print {
+        body { background: white; padding: 0; }
+        .card { box-shadow: none; break-inside: avoid; }
+    }
+    
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>🎯 选品分析报告</h1>
+<div class="meta">共 34 个商品 · 2026-08-06 15:18</div>
+</div>
+<div class="card">
+<div class="card-title">📋 选品推荐排名</div>
+<table><tr><th>排名</th><th>推荐</th><th>评分</th><th>商品</th><th>价格</th><th>销量</th><th>店铺</th></tr>
+<tr><td>#1</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>78.0</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=1013097395573&sortType=&pageId=&abBizDataType=cbuOffer&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7&skuId=6184493939003" target="_blank">白雪直液式钢笔FP33大容量免换囊一次性EF尖学生练字书法不</a></td><td>¥0.99</td><td>找相似¥0.9912~863支¥0.96≥864支综合服务验厂报告采购咨询2.0退换体验3.3品质体</td><td>义乌市晏郑电子商务有限公司旺旺在线</td></tr>
+<tr><td>#2</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>73.3</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=677854014380&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=5556084686466&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">永生2853钢笔书法艺签美工成人练字暗尖弯尖金属礼盒套装墨囊</a></td><td>¥2.99</td><td>找相似¥2.99≥1支综合服务采购咨询3.0退换体验3.3品质体验4.0采购咨询3.0纠纷解决4.0</td><td>进贤县天逸文化用品旺旺在线</td></tr>
+<tr><td>#3</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>72.7</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=1066941535015&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=6284129470841&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">白雪小绿杆直液式免换囊钢笔大墨量小包尖FP35小学生练字EF</a></td><td>¥1.12</td><td>找相似¥1.12≥1支综合服务采购咨询4.0退换体验5.0品质体验5.0采购咨询4.0纠纷解决5.0</td><td>上海盛笺文化用品有限公司旺旺在线</td></tr>
+<tr><td>#4</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>72.6</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=1008736665777&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=6007117017127&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">白雪直液式钢笔FP33大容量免换囊一次性EF尖学生练字书法不</a></td><td>¥0.98</td><td>找相似¥0.98≥1支综合服务采购咨询3.0退换体验4.0品质体验4.0采购咨询3.0纠纷解决4.0</td><td>上海崟景贸易有限公司旺旺在线</td></tr>
+<tr><td>#5</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>70.5</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=895007674574&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=5913962559937&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">晨.光优握热可擦钢笔学生二三年级练字钢笔初学者正姿笔HAFP</a></td><td>¥4.26</td><td>找相似¥4.26≥2卡综合服务采购咨询3.5退换体验4.0品质体验4.7采购咨询3.5纠纷解决4.0</td><td>上海零柒九实业发展有限公司旺旺在线</td></tr>
+<tr><td>#6</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>70.4</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=750413192979&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=5616583334981&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">钢笔可替换墨囊ins高颜值卡通可爱学生练字正姿耐用书法笔签名</a></td><td>¥2.00</td><td>找相似¥2.00≥2支综合服务验厂报告采购咨询4.5退换体验4.3品质体验4.0采购咨询4.5纠纷解</td><td>汕头市庚希科技有限公司旺旺在线</td></tr>
+<tr><td>#7</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>66.6</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=973704415744&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=6092801158448&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">永生小钢炮钢笔粗细美工弯头弯尖书法速写艺签名练字学生金属钢笔</a></td><td>¥2.89</td><td>找相似进贤县天逸文化用品综合服务采购咨询3.0退换体验3.3品质体验4.0采购咨询3.0纠纷解决4.</td><td>进贤县天逸文化用品旺旺在线</td></tr>
+<tr><td>#8</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>65.6</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=734045116976&sortType=&pageId=&abBizDataType=cbuOffer&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7&skuId=6286674963715" target="_blank">跨境外贸德国风格墨囊钢笔小学生专用网红同款广告笔钢笔文具批发</a></td><td>¥0.35</td><td>找相似南昌市鹏达笔业有限公司综合服务验厂报告采购咨询5.0退换体验4.3品质体验5.0采购咨询5.0</td><td>南昌市鹏达笔业有限公司旺旺在线</td></tr>
+<tr><td>#9</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>65.4</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=676185172476&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=4858765888235&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">可换墨囊卫庄小学生多彩钢笔正姿书写练字墨水两用钢笔批发跨境</a></td><td>¥0.75</td><td>找相似进贤县艺江南笔业厂综合服务验厂报告采购咨询3.5退换体验4.0品质体验3.3采购咨询3.5纠纷</td><td>进贤县艺江南笔业厂旺旺在线</td></tr>
+<tr><td>#10</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>65.4</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=1066515570762&sortType=&pageId=&abBizDataType=cbuOffer&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7&skuId=6115183980878" target="_blank">彩色直液式钢笔大容量免换墨囊小学生三年级专用0.38mm一次</a></td><td>¥0.8</td><td>找相似义乌市合慕文化用品有限公司综合服务采购咨询4.0退换体验3.7品质体验5.0采购咨询4.0纠纷</td><td>义乌市合慕文化用品有限公司旺旺在线</td></tr>
+<tr><td>#11</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>65.4</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=675833114575&sortType=&pageId=&abBizDataType=cbuOffer&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7&skuId=5028249062206" target="_blank">卫庄硬笔书法练字龙头钢笔吸墨水金属绘画美工笔中小学生批发全钢</a></td><td>¥3.52</td><td>找相似进贤县艺江南笔业厂综合服务验厂报告采购咨询3.5退换体验4.0品质体验3.3采购咨询3.5纠纷</td><td>进贤县艺江南笔业厂旺旺在线</td></tr>
+<tr><td>#12</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>65.4</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=980892049813&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=5938945481403&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">咔巴熊咔巴熊或减仓热可擦钢笔EF尖正姿中小学生练字专用可替换</a></td><td>¥3.35</td><td>找相似东阳市亦恩文具有限公司综合服务验厂报告采购咨询3.5退换体验4.0品质体验3.7采购咨询3.5</td><td>东阳市亦恩文具有限公司旺旺在线</td></tr>
+<tr><td>#13</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>65.4</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=1003344404129&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=6171322439114&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">热可擦矫姿钢笔小学生书写练字可换墨囊钢笔跨境热款钢笔厂家直销</a></td><td>¥2.4</td><td>找相似义乌市义杭文具有限公司综合服务验厂报告采购咨询4.0退换体验4.0品质体验4.0采购咨询4.0</td><td>义乌市义杭文具有限公司旺旺在线</td></tr>
+<tr><td>#14</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>65.4</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=944558714016&sortType=&pageId=&abBizDataType=cbuOffer&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7&skuId=6014795614710" target="_blank">得力SF568矫姿学生钢笔 套装暗尖学生考试可换墨囊练字钢笔</a></td><td>¥3.33</td><td>找相似潍坊鼎耀商贸有限公司综合服务验厂报告采购咨询4.0退换体验3.3品质体验4.0采购咨询4.0纠</td><td>潍坊鼎耀商贸有限公司旺旺在线</td></tr>
+<tr><td>#15</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>65.3</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=996773268990&sortType=&pageId=&abBizDataType=cbuOffer&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7&skuId=6140861710224" target="_blank">24支正姿可换囊练字钢笔三四年级学生初学文具店奖品可爱萌宠</a></td><td>¥1.99</td><td>找相似临沂市河东区小帅文干商贸铺综合服务采购咨询3.0退换体验5.0品质体验5.0采购咨询3.0纠纷</td><td>临沂市河东区小帅文干商贸铺旺旺在线</td></tr>
+<tr><td>#16</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>65.3</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=1028489802764&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=6207167990667&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">小学生钢笔莫兰迪色男女款明尖钢笔可替换墨胆学生练字写字钢笔</a></td><td>¥1.6</td><td>找相似进贤县文港逸尚文具制笔厂综合服务采购咨询3.0退换体验3.3品质体验5.0采购咨询3.0纠纷解</td><td>进贤县文港逸尚文具制笔厂旺旺在线</td></tr>
+<tr><td>#17</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>63.8</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=959102806055&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=5892167625471&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">黑森林钢笔男士硬笔书法美工弯尖办公成人练字钢笔钛黑笔尖高颜值</a></td><td>¥3.5</td><td>找相似南昌市笔豪文化用品有限公司综合服务验厂报告采购咨询2.5退换体验3.3品质体验3.3采购咨询2</td><td>南昌市笔豪文化用品有限公司旺旺在线</td></tr>
+<tr><td>#18</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>62.3</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=998447640589&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=6145133079001&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">山水清音钢笔中国古风高颜值小学生正姿书法练字笔EF笔尖可换墨</a></td><td>¥4.7</td><td>找相似湖北省乐信电子商务有限公司综合服务采购咨询3.0退换体验3.7品质体验3.7采购咨询3.0纠纷</td><td>湖北省乐信电子商务有限公司旺旺在线</td></tr>
+<tr><td>#19</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>61.9</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=944523090780&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=5848124604048&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">白雪FP10直液式彩色钢笔EF尖0.38mm一次性大容量免换</a></td><td>¥4.6</td><td>找相似上海空白线文化创意有限公司综合服务采购咨询1.5退换体验4.0品质体验3.3采购咨询1.5纠纷</td><td>上海空白线文化创意有限公司旺旺在线</td></tr>
+<tr><td>#20</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>61.6</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=1042625599250&sortType=&pageId=&abBizDataType=cbuOffer&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7&skuId=6065768204298" target="_blank">钢笔淡彩水彩绘画钢笔勾线笔速写笔防水墨水闪粉彩墨专用画画工具</a></td><td>¥9.70</td><td>找相似¥9.701~9支¥8.20≥10支综合服务采购咨询4.0退换体验4.3品质体验4.7采购咨询</td><td>班彩（上海）文化创意有限公司旺旺在线</td></tr>
+<tr><td>#21</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>60.9</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=878257654165&sortType=&pageId=&abBizDataType=cbuOffer&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7&skuId=5718170276100" target="_blank">咔巴熊咔巴熊新款卡皮钢笔三角正姿笔握小学生三年级练字专用可替</a></td><td>¥4.37</td><td>找相似上海咔巴熊文化科技有限公司综合服务验厂报告采购咨询3.0退换体验4.0品质体验4.0采购咨询3</td><td>上海咔巴熊文化科技有限公司旺旺在线</td></tr>
+<tr><td>#22</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>60.5</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=1066064657151&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=6113173796992&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">莫兰迪新款多色创意速干高级明尖金属钢笔礼盒装商务首选日常送礼</a></td><td>¥6.34</td><td>找相似杭州能辰贸易有限公司综合服务采购咨询2.5退换体验4.0品质体验4.3采购咨询2.5纠纷解决4</td><td>杭州能辰贸易有限公司旺旺在线</td></tr>
+<tr><td>#23</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>60.5</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=898911365511&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=5919585426911&trace_log=normal&uuid=5b91439c489448599fc371598ec8aa42" target="_blank">永生龙头钢笔礼盒装学生商务办公送人签字笔金属龙头钢笔可刻字</a></td><td>¥3.36</td><td>-</td><td>1688选品中心官方供应链旺旺在线</td></tr>
+<tr><td>#24</td><td><span class="badge badge-warning">△ 可考虑</span></td><td><strong>60.5</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=997860938456&sortType=&pageId=&abBizDataType=cbuOffer&trace_log=normal&uuid=3d4bac02e7224a9f92510173e23934b2&skuId=6147474191524" target="_blank">Darci呋虫胺灭杀跳蚤蟑螂蚂蚁臭虫宠物室内沙发床垫杀虫剂呋</a></td><td>¥2.3</td><td>-</td><td>日化有限公司综合服务验厂</td></tr>
+<tr><td>#25</td><td><span class="badge badge-danger">× 不推荐</span></td><td><strong>57.7</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=1029103112553&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=6265188538186&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">罗氏金属钢笔学生专用练字书法钢笔可替换墨囊高颜值正姿钢笔批发</a></td><td>¥6.5</td><td>找相似义乌市明哲文化用品有限公司综合服务验厂报告采购咨询2.0退换体验4.3品质体验4.0采购咨询2</td><td>义乌市明哲文化用品有限公司旺旺在线</td></tr>
+<tr><td>#26</td><td><span class="badge badge-danger">× 不推荐</span></td><td><strong>52.8</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=873677820879&sortType=&pageId=&abBizDataType=cbuOffer&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7&skuId=6200769902010" target="_blank">英雄钢笔礼盒套装高档商务办公礼物送礼男女士精致学生专用练字</a></td><td>¥69.00</td><td>找相似¥69.00≥1盒综合服务采购咨询4.0退换体验4.3品质体验3.0采购咨询4.0纠纷解决5.</td><td>上海千缔电子商务有限公司旺旺在线</td></tr>
+<tr><td>#27</td><td><span class="badge badge-danger">× 不推荐</span></td><td><strong>51.8</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=732732280441&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=5070773972380&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">英雄牌钢笔359高颜值墨囊可替换小学生专用三年级矫正练字笔刻</a></td><td>¥13.70</td><td>找相似¥13.70≥1支综合服务采购咨询5.0退换体验3.7品质体验5.0采购咨询5.0纠纷解决5.</td><td>长沙市芙蓉区虹轩办公用品商行旺旺在线</td></tr>
+<tr><td>#28</td><td><span class="badge badge-danger">× 不推荐</span></td><td><strong>51.8</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=672882051293&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=5015954507842&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">永生钢笔三件套男女书法美工练字学生专用墨囊墨水高档金属钢笔</a></td><td>¥12.80</td><td>找相似¥12.80≥1盒综合服务采购咨询3.0退换体验3.0品质体验5.0采购咨询3.0纠纷解决5.</td><td>南昌市云尚文具有限公司旺旺在线</td></tr>
+<tr><td>#29</td><td><span class="badge badge-danger">× 不推荐</span></td><td><strong>51.5</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=919092115893&sortType=&pageId=&abBizDataType=cbuOffer&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7&skuId=5959051319189" target="_blank">钢笔热可擦钢笔小学生三年级钢笔学生儿童钢笔热敏可擦墨囊可</a></td><td>¥10.99</td><td>找相似南昌梦矿贸易有限公司综合服务采购咨询2.5退换体验3.0品质体验3.0采购咨询2.5纠纷解决5</td><td>南昌梦矿贸易有限公司旺旺在线</td></tr>
+<tr><td>#30</td><td><span class="badge badge-danger">× 不推荐</span></td><td><strong>50.6</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=713608159734&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=5773019283342&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">烂笔头798#商务金属钢笔3.4口径书法练字可替换蓝色墨囊厂</a></td><td>¥8.8</td><td>找相似南昌尧舜文具礼品有限公司综合服务采购咨询5.0退换体验4.3品质体验4.0采购咨询5.0纠纷解</td><td>南昌尧舜文具礼品有限公司旺旺在线</td></tr>
+<tr><td>#31</td><td><span class="badge badge-danger">× 不推荐</span></td><td><strong>50.5</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=989238786645&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=6122057254078&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">得力钢笔小学生专用三年级学生儿童可换墨囊四年级初学者练字钢笔</a></td><td>¥9.68</td><td>找相似成都墨兰居科技有限公司综合服务验厂报告采购咨询4.5退换体验4.7品质体验3.3采购咨询4.5</td><td>成都墨兰居科技有限公司旺旺在线</td></tr>
+<tr><td>#32</td><td><span class="badge badge-danger">× 不推荐</span></td><td><strong>48.9</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=801763766736&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=5916285816268&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">得力热可擦钢笔小学生三年级专用练字钢笔初学者矫姿正姿笔SF5</a></td><td>¥11</td><td>找相似宁波得力文具科技有限公司综合服务验厂报告采购咨询3.0退换体验4.0品质体验4.0采购咨询3.</td><td>宁波得力文具科技有限公司旺旺在线</td></tr>
+<tr><td>#33</td><td><span class="badge badge-danger">× 不推荐</span></td><td><strong>44.4</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=712709217641&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=5957668104406&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">HERO英雄钢笔成人男士商务办公送礼美工弯尖学生练字专用厂家</a></td><td>¥29.8</td><td>找相似上海英雄金笔厂有限公司综合服务采购咨询4.0退换体验4.3品质体验4.3采购咨询4.0纠纷解决</td><td>上海英雄金笔厂有限公司旺旺在线</td></tr>
+<tr><td>#34</td><td><span class="badge badge-danger">× 不推荐</span></td><td><strong>44.4</strong></td><td><a href="http://detail.m.1688.com/page/index.html?offerId=1013276255404&sortType=&pageId=&abBizDataType=cbuOffer&hotSaleSkuId=6184986443223&trace_log=normal&uuid=f31920e245b14887916bc06fbdeb42c7" target="_blank">英雄钢笔磁吸三年级小学生专用可换墨囊儿童初学者钢笔初中生用</a></td><td>¥11.8</td><td>找相似义乌市斟锐电子商务有限公司综合服务采购咨询3.5退换体验4.0品质体验3.7采购咨询3.5纠纷</td><td>义乌市斟锐电子商务有限公司旺旺在线</td></tr>
+</table>
+</div>
+<div class="footer">电商数据分析系统 · 生成于 2026-08-06 15:18</div>
+</div>
+</body>
+</html>

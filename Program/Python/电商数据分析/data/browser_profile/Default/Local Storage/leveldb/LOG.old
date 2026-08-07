@@ -1,0 +1,8 @@
+2026/08/06-15:20:23.245 4ff980 Reusing MANIFEST /Users/ken/Documents/GitHub/MyCode/Program/Python/电商数据分析/data/browser_profile/Default/Local Storage/leveldb/MANIFEST-000001
+2026/08/06-15:20:23.246 4ff980 Recovering log #4
+2026/08/06-15:20:23.247 4ff980 Reusing old log /Users/ken/Documents/GitHub/MyCode/Program/Python/电商数据分析/data/browser_profile/Default/Local Storage/leveldb/000004.log 
+2026/08/06-15:20:30.002 4ff983 Level-0 table #8: started
+2026/08/06-15:20:30.010 4ff983 Level-0 table #8: 257080 bytes OK
+2026/08/06-15:20:30.013 4ff983 Delete type=0 #4
+2026/08/06-15:21:05.747 4ff983 Level-0 table #10: started
+2026/08/06-15:21:05.750 4ff983 Level-0 table #10: 106246 bytes OK

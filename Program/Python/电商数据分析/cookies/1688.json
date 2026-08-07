@@ -1,0 +1,492 @@
+[
+  {
+    "domain": ".1688.com",
+    "name": "__cn_logon__",
+    "value": "true",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "__cn_logon_id__",
+    "value": "sarius1314",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "__last_loginid__",
+    "value": "b2b-3359699012c6cd9",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "__last_memberid__",
+    "value": "b2b-3359699012c6cd9",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "_m_h5_tk",
+    "value": "d3480cbc19c47968c65da0c661e3e6a0_1786007242717",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "_m_h5_tk_enc",
+    "value": "76060b5c01d3dbaf33751b3c4ae0ccdd",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "_nk_",
+    "value": "sarius1314",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "_tb_token_",
+    "value": "e733b55b035de",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "_user_vitals_session_data_",
+    "value": "{\"user_line_track\":true,\"ul_session_id\":\"j0q4ga78ji\",\"last_page_id\":\"www.1688.com%2F420we6jd6dp\"}",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "ali_apache_track",
+    "value": "c_mid=b2b-3359699012c6cd9|c_lid=sarius1314|c_ms=1",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "cna",
+    "value": "y9P1IsfLFj4CAXyg+/uxYipI",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "cookie1",
+    "value": "BxNVuZO%2B2j8GTX3zGbnCqWdOuMRh%2FPPqGpef9iXbA6k%3D",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "cookie17",
+    "value": "UNN4DxKQnbyH7Q%3D%3D",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "cookie2",
+    "value": "186f02217cc562ed5a71877a552d6348",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "csg",
+    "value": "c02cdfa6",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "isg",
+    "value": "BPHxrGgmP-6QgZP6oa3q1Q5wAHuL3mVQvLrTO9MG5rjX-hFMGy8PIFQbHI6cBv2I",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "keywordsHistory",
+    "value": "%E5%80%92%E6%B5%81%E9%A6%99%E7%82%89%3B%E5%80%92%E6%B5%81%E9%A6%99%3B%E9%A6%99%E7%82%89%3B%E6%B1%89%E6%9C%8D",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "last_mid",
+    "value": "b2b-3359699012c6cd9",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "leftMenuLastMode",
+    "value": "COLLAPSE",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "lid",
+    "value": "sarius1314",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "mtop_partitioned_detect",
+    "value": "1",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "sg",
+    "value": "42a",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "sgcookie",
+    "value": "E100Gtoulg%2BxKKvCfNUS1wk4ZS6Wnp1kvKXdbd5NitXvF8nAKK4WT1G3NX6HaPD28iTApY%2BKNmThStX4SX3HlVpVWWDsrHIcBnu1mFeCU68uU6jK5ODznMI22U5fSCxMKyv0",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "t",
+    "value": "0a38300340cf77b95986c0a1434760eb",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "taklid",
+    "value": "7e13c1e03c234bb3bf51586484e2dd6f",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "tfstk",
+    "value": "gqyEntsMIY41BB_00oDP7CBMN7MKUY7bK8gSquqoA20HdpTu_0iXrUqlJzyrSkTI-81LUgzbmb4SPksyvRz2Fp_d9uvrFYbflt6bv6H-EZGYLQVsJ0EirGG3vsPseYbflOikHR7SEu97EchMsm3ixpDktG8iV0koxL0hbVmrDQY3rYjNbmo-qDAHtAXivV0oEY4ujGo-SDDoEzqGb0LlabhpymchvN55Aqxo0Xu0xVJ4XRonHBEn7L97QylEoUgwEL2ZvueCOm9h3VVQZJMgKNYxIoF_-ckVU3oaglDnYzBvpvq0j7cUU_txy5rgGfP9AMnaLoyr0XYGY4eQ88lLnZ9t-5yTUvN18Kg-Z5wKMJ_MLxVYAvNuSgvoz5ml4GT-jxabeW8kaXmtbqsNbxvpFzbeKMsewQhgScufvjRJwXb-bqsNbQd-99mZlMhV.",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "uc4",
+    "value": "id4=0%40UgQwGjEOcdIDH3sLP7mlPy6AOG15&nk4=0%40EoZ8lrKsQEWpqUIBZimeuPKaGbXZ",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "unb",
+    "value": "3359699012",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "union",
+    "value": "{\"amug_biz\":\"comad\",\"amug_fl_src\":\"sem_bing\",\"creative_url\":\"https%3A%2F%2Fwww.1688.com%2Fzw%2Fhamlet.html%3Fscene%3D2%26keywords%3D1688%2B%25EE%25A4%2586%26cosite%3Dbingjj%26trackid%3D885230014311083100849685%26format%3Dnormal%26location%3Dlanding_t4%26m_k%3D82533487030043%26m_a%3D1320515944593223%26m_p%3D522150290%26m_clk%3D2da8ea7d49351aa19e8f800961fbe3bd%26m_c%3D82532496060120%26m_q%3D1688%26m_mt%3Dbe%26m_ep%3De%26m_o%3D82533487030043%26m_site%3Do%26d27%3Dc%26m_cext%3D%26m_aud%3Dkwd-82533487030043%3Aloc-39%26msclkid%3D2da8ea7d49351aa19e8f800961fbe3bd\",\"creative_time\":1785997522309}",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".1688.com",
+    "name": "xlly_s",
+    "value": "1",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".air.1688.com",
+    "name": "log-echo-utdid",
+    "value": "utdid%3Dii2drv4vqyo%26user%3D10079097036%26time%3D1785651913755",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".login.taobao.com",
+    "name": "lc",
+    "value": "Vv6bXvBrKdzkApqw7Gg7",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".login.taobao.com",
+    "name": "lid",
+    "value": "sarius1314",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "3PcFlag",
+    "value": "1785651912394",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "_cc_",
+    "value": "UtASsssmfA%3D%3D",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "_hvn_lgc_",
+    "value": "0",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "_l_g_",
+    "value": "Ug%3D%3D",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "_nk_",
+    "value": "sarius1314",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "_tb_token_",
+    "value": "e733b55b035de",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "cancelledSubSites",
+    "value": "empty",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "cna",
+    "value": "ZHGuIq8t7RgBASQJiSrizXCi",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "cookie1",
+    "value": "BxNVuZO%2B2j8GTX3zGbnCqWdOuMRh%2FPPqGpef9iXbA6k%3D",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "cookie17",
+    "value": "UNN4DxKQnbyH7Q%3D%3D",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "cookie2",
+    "value": "186f02217cc562ed5a71877a552d6348",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "csg",
+    "value": "c02cdfa6",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "dnk",
+    "value": "sarius1207",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "existShop",
+    "value": "MTc4NTY1MTg5OQ%3D%3D",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "havana_lgc2_0",
+    "value": "eyJoaWQiOjMzNTk2OTkwMTIsInNnIjoiNDAwMTljM2VmMThjNDdiODMwNGJmZjM3NGU2ZGEzZjQiLCJzaXRlIjowLCJ0b2tlbiI6IjExbnNmM3Q5YXFNSVRDSk51c284LS1nIn0",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "havana_lgc_exp",
+    "value": "1816755899760",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "isg",
+    "value": "BEZGCD-LUHY7PgSS47xaLq6VlzrIp4phzsF1DTBhp2jlM8hMMDcYcQeKC2__r4J5",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "lgc",
+    "value": "sarius1314",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "sg",
+    "value": "42a",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "sgcookie",
+    "value": "E100Gtoulg%2BxKKvCfNUS1wk4ZS6Wnp1kvKXdbd5NitXvF8nAKK4WT1G3NX6HaPD28iTApY%2BKNmThStX4SX3HlVpVWWDsrHIcBnu1mFeCU68uU6jK5ODznMI22U5fSCxMKyv0",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "skt",
+    "value": "1d58b4637a246b7b",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "t",
+    "value": "0a38300340cf77b95986c0a1434760eb",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "tfstk",
+    "value": "hTxqiRf89kgqG4sv1l1EJ03SdipAiIq_fG1jrQ5kZsOXldTPICO-BxIXI1RwN_QXlKgTbNfkZsOXldTr7IphlGgSAKCMLnpD0GV6E__CSHcIAD9xotI6Ed9sJJIlB_X0mZbiUuX1Zr4DssbuZ9Wdj1AGjY5lHt4GIZq0r0XfZ1jGjCvoUOClnGjMsLDPBah_bUilrke8g_68j3WVr49cgTBJ4t72KKfyhK1pJ-FkICcafMYpah7h3crRcp8lqt8rIzfc8EAfeCoUmsxPY7PLjl1CUTS3DlOidCgq4PUOrQXPOxQUWPQm6T5IUYzTWZncU6MA8",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "thw",
+    "value": "xx",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "tracknick",
+    "value": "sarius1314",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "uc1",
+    "value": "cookie14=UoYWONlhyrWWlg%3D%3D&existShop=false&cookie21=UtASsssmeW6lpyd%2BB%2B3t&cookie15=V32FPkk%2Fw0dUvg%3D%3D&pas=0&cookie16=VFC%2FuZ9az08KUQ56dCrZDlbNdA%3D%3D",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "uc3",
+    "value": "id2=UNN4DxKQnbyH7Q%3D%3D&nk2=EF8DjBre4FPYjA%3D%3D&lg2=V32FPkk%2Fw0dUvg%3D%3D&vt3=F8dD1NjKQqv%2BJI2dp6s%3D",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "uc4",
+    "value": "id4=0%40UgQwGjEOcdIDH3sLP7mlPy6AOG15&nk4=0%40EoZ8lrKsQEWpqUIBZimeuPKaGbXZ",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": ".taobao.com",
+    "name": "unb",
+    "value": "3359699012",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": "h5api.m.1688.com",
+    "name": "arms_uid",
+    "value": "62012a3d-e83a-46d0-b630-06a96cc36da7",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": "login.taobao.com",
+    "name": "_uab_collina",
+    "value": "178565188027383928350878",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": "login.taobao.com",
+    "name": "arms_uid",
+    "value": "e3c38a9a-a07a-4c61-9f06-72e6c67170bd",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": "login.taobao.com",
+    "name": "arms_uid",
+    "value": "2bbae945-2012-49cc-a96d-0b1e03819a2a",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": "order.1688.com",
+    "name": "ubn",
+    "value": "p",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": "work.1688.com",
+    "name": "XSRF-TOKEN",
+    "value": "d7ed8b06-1bd1-412d-879e-4fac8faa90e0",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": "www.1688.com",
+    "name": "ptid",
+    "value": "01770000000bd733958616b37fe929d5",
+    "path": "/",
+    "secure": false
+  },
+  {
+    "domain": "www.taobao.com",
+    "name": "arms_uid",
+    "value": "6810b34a-e5aa-4e1f-a639-248aa6ab38b2",
+    "path": "/",
+    "secure": false
+  }
+]

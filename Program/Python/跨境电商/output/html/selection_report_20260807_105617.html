@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Selection Report</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #333; padding: 20px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 { font-size: 24px; margin-bottom: 20px; color: #1a1a2e; }
+    h2 { font-size: 18px; margin: 24px 0 12px; color: #16213e; border-bottom: 2px solid #4A90D9; padding-bottom: 6px; }
+    .header { background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; border-radius: 12px; margin-bottom: 24px; }
+    .header h1 { color: white; margin-bottom: 8px; }
+    .header .subtitle { opacity: 0.7; font-size: 14px; }
+    .kpi-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+    .kpi-card { flex: 1; min-width: 160px; padding: 20px; border-radius: 10px; color: white; text-align: center; }
+    .kpi-value { font-size: 28px; font-weight: 700; }
+    .kpi-label { font-size: 12px; opacity: 0.85; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .chart-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+    .chart-card { flex: 1; min-width: 350px; background: white; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .chart-card img { width: 100%; height: auto; border-radius: 4px; }
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    th { background: #1a1a2e; color: white; padding: 10px 12px; text-align: left; font-size: 12px; text-transform: uppercase; }
+    td { padding: 8px 12px; border-bottom: 1px solid #eee; font-size: 13px; }
+    tr:hover td { background: #f8f9ff; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+    .badge-success { background: #d4edda; color: #155724; }
+    .badge-warning { background: #fff3cd; color: #856404; }
+    .badge-danger { background: #f8d7da; color: #721c24; }
+    .badge-info { background: #d1ecf1; color: #0c5460; }
+    .pain-points { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pain-tag { background: #fff3cd; color: #856404; padding: 4px 10px; border-radius: 20px; font-size: 12px; }
+    .footer { text-align: center; margin-top: 30px; padding: 16px; color: #999; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+    <h1>🎯 Product Selection Report</h1>
+    <div class="subtitle">Generated: 2026-08-07 10:56 | Products analyzed: 50</div>
+</div>
+<div class="kpi-row">
+
+        <div class="kpi-card" style="background:#28A745">
+            <div class="kpi-value">1</div>
+            <div class="kpi-label">★ Recommended</div>
+        </div>
+
+        <div class="kpi-card" style="background:#FFC107">
+            <div class="kpi-value">28</div>
+            <div class="kpi-label">△ Consider</div>
+        </div>
+
+        <div class="kpi-card" style="background:#DC3545">
+            <div class="kpi-value">21</div>
+            <div class="kpi-label">× Skip</div>
+        </div>
+
+        <div class="kpi-card" style="background:#4A90D9">
+            <div class="kpi-value">50</div>
+            <div class="kpi-label">Total</div>
+        </div>
+</div><h2>🏆 Top Products</h2><table><tr><th>Rank</th><th>Level</th><th>Score</th><th>Title</th><th>Price</th><th>Sales</th><th>Rating</th><th>Seller</th></tr><tr>
+                <td><strong>#1</strong></td>
+                <td><span class="badge badge-success">★ Recommended</span></td>
+                <td><strong>83.6</strong></td>
+                <td>Genuine Parker Ball Pen Ballpoint Refill Quink Flow Medium X</td>
+                <td>68.09元</td>
+                <td>已售出 497 件</td>
+                <td>-</td>
+                <td>taraktradeltd</td>
+            </tr><tr>
+                <td><strong>#2</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>75.4</strong></td>
+                <td>Eco Pens - 100% Plastic Free Black - 20 Pack - Black Ballpoi</td>
+                <td>72.63元</td>
+                <td>已售出 92 件</td>
+                <td>-</td>
+                <td>new_living</td>
+            </tr><tr>
+                <td><strong>#3</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>73.1</strong></td>
+                <td>Mitsubishi Uniball ZENTO Signature Metallic Black 0.5mm UBZH</td>
+                <td>337.41元</td>
+                <td>已售出 81 件</td>
+                <td>-</td>
+                <td>tomo32612</td>
+            </tr><tr>
+                <td><strong>#4</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>70.2</strong></td>
+                <td>Pilot F "Tiger Eye" F Nib Fountain Pen NOS Vintage 1980s Rar</td>
+                <td>101.24元</td>
+                <td>已售出 32 件</td>
+                <td>-</td>
+                <td>pastelcactuscafe</td>
+            </tr><tr>
+                <td><strong>#5</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>70.0</strong></td>
+                <td>Kaweco LILIPUT Fountain Pen Silver Aluminium Fountain Pen Ni</td>
+                <td>236.24元</td>
+                <td>已售出 37 件</td>
+                <td>-</td>
+                <td>tm-direcet</td>
+            </tr><tr>
+                <td><strong>#6</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>69.9</strong></td>
+                <td>NASA Metal Pen, Gift for fan, Space Pen , Best Pilot Gift, G</td>
+                <td>145.12元</td>
+                <td>已售出 32 件</td>
+                <td>-</td>
+                <td>aviastore</td>
+            </tr><tr>
+                <td><strong>#7</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>69.2</strong></td>
+                <td>Mitsubishi Pencil Uniball Zento Signature Model Metallic Bla</td>
+                <td>280.04元</td>
+                <td>已售出 33 件</td>
+                <td>-</td>
+                <td>suzuhal1776</td>
+            </tr><tr>
+                <td><strong>#8</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>66.3</strong></td>
+                <td>Stainless Steel Ballpoint Pen Ball Point Writing Pen Student</td>
+                <td>33.68元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>blazhydrate</td>
+            </tr><tr>
+                <td><strong>#9</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>66.2</strong></td>
+                <td>GENUINE SHEAFFER K BALLPOINT REFILL BIRO SMOOTH WRITING MEDI</td>
+                <td>49.91元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>house-of-pens</td>
+            </tr><tr>
+                <td><strong>#10</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>66.2</strong></td>
+                <td>Retro Metal Fountain Pen Replaceable Ink Fine Nib Elegant Wr</td>
+                <td>48.60元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>dailydeals_70</td>
+            </tr><tr>
+                <td><strong>#11</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>66.1</strong></td>
+                <td>Multifunctional Portable Key Ring Stainless Steel Telescopic</td>
+                <td>58.99元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>zhengrong01</td>
+            </tr><tr>
+                <td><strong>#12</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>66.0</strong></td>
+                <td>Pentonic LINC 0.6 mm Gel Pen black ink & Lightweight Pack of</td>
+                <td>76.07元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>babusaga</td>
+            </tr><tr>
+                <td><strong>#13</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>66.0</strong></td>
+                <td>5x Blue Ink Original Sailor Japan Cartridge For Slim Fountai</td>
+                <td>77.82元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>zippa65</td>
+            </tr><tr>
+                <td><strong>#14</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>65.7</strong></td>
+                <td>OHTO Aluminum Needle Point Ball Point Pen GS01-G5 0.5mm Gold</td>
+                <td>134.99元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>masuda</td>
+            </tr><tr>
+                <td><strong>#15</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>65.6</strong></td>
+                <td>Bolt Action Rifle Ballpoint Bullet Pen Gun Metal & Wood Styl</td>
+                <td>141.53元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>0nthebrink</td>
+            </tr><tr>
+                <td><strong>#16</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>65.5</strong></td>
+                <td>New Beautiful Reliable Good Quality Gift Comfortable Fountai</td>
+                <td>163.63元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>samad_pen_co</td>
+            </tr><tr>
+                <td><strong>#17</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>65.3</strong></td>
+                <td>Kaweco Sport Fountain Pen Collection Edition Marble Ocean</td>
+                <td>195.72元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>gidania</td>
+            </tr><tr>
+                <td><strong>#18</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>65.2</strong></td>
+                <td>Click Orion Ebonite Barrel Fountain Pen With 3in1 Ink Fillin</td>
+                <td>202.49元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>goldenshop12</td>
+            </tr><tr>
+                <td><strong>#19</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>65.1</strong></td>
+                <td>AMG Carbon Fibre Pen</td>
+                <td>227.17元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>king806</td>
+            </tr><tr>
+                <td><strong>#20</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>65.0</strong></td>
+                <td>Kaweco COLLECTION Fountain Pen Mellow Blue , EF/F/M/B/BB Nib</td>
+                <td>236.24元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>vermillion888</td>
+            </tr><tr>
+                <td><strong>#21</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>64.9</strong></td>
+                <td>Porsche Set: Lanyard + Sculptural Ballpoint Pen (Prodir Ston</td>
+                <td>256.48元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>alexsorbet</td>
+            </tr><tr>
+                <td><strong>#22</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>64.8</strong></td>
+                <td>Click Century Light Brown & Black Ebonite Fountain Pen Chrom</td>
+                <td>269.98元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>goldenshop12</td>
+            </tr><tr>
+                <td><strong>#23</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>64.7</strong></td>
+                <td>MITSUBISHI PENCIL Uniball ZENTO Signature Model Silver 0.38m</td>
+                <td>290.23元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>masa_globalmarket</td>
+            </tr><tr>
+                <td><strong>#24</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>64.4</strong></td>
+                <td>Mitsubishi Pencil Uniball Zento Signature Model Metallic Bla</td>
+                <td>337.48元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>charq</td>
+            </tr><tr>
+                <td><strong>#25</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>64.4</strong></td>
+                <td>Parker Quink Rollerball Pen Refill Black Blue Ink Medium Fin</td>
+                <td>94.43元</td>
+                <td>已售出 9+ 件</td>
+                <td>-</td>
+                <td>tol-bhav</td>
+            </tr><tr>
+                <td><strong>#26</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>63.1</strong></td>
+                <td>Military Tactical Pen Multifunction Aluminum AlloyOutdoor Ca</td>
+                <td>36.27元</td>
+                <td>已售出 6+ 件</td>
+                <td>-</td>
+                <td>tmcompanyltd</td>
+            </tr><tr>
+                <td><strong>#27</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>61.7</strong></td>
+                <td>MITSUBISHI PENCIL uniball ZENTO Signature Model Gold Silver </td>
+                <td>357.66元</td>
+                <td>已售出 7+ 件</td>
+                <td>-</td>
+                <td>orsted_japan</td>
+            </tr><tr>
+                <td><strong>#28</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>60.5</strong></td>
+                <td>SAKURA Craft Lab 001 LGB5005 Gel Ink Ballpoint Evolving pen</td>
+                <td>485.97元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>tokyo_style_market</td>
+            </tr><tr>
+                <td><strong>#29</strong></td>
+                <td><span class="badge badge-warning">△ Consider</span></td>
+                <td><strong>60.5</strong></td>
+                <td>Uniball ZENTO Signature Model 3 Color Ballpoint Pen M-Black </td>
+                <td>478.82元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>nyhu8-24</td>
+            </tr><tr>
+                <td><strong>#30</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>56.9</strong></td>
+                <td>Mitsubishi Uniball Zento Signature Ballpoint Pen M Black C G</td>
+                <td>573.65元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>shoei-store</td>
+            </tr><tr>
+                <td><strong>#31</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>56.5</strong></td>
+                <td>#RARE Montblanc Meisterstuck Special Limited Edition Ballpoi</td>
+                <td>641.14元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>ultimate_master</td>
+            </tr><tr>
+                <td><strong>#32</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>56.5</strong></td>
+                <td>Premium Montblanc Meisterstuck Special Limited Edition Rolle</td>
+                <td>641.14元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>ultimate_master</td>
+            </tr><tr>
+                <td><strong>#33</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>52.6</strong></td>
+                <td>Premium Montblanc Greta Garbo Special Edition Ballpoint Pen </td>
+                <td>776.14元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>ultimate_master</td>
+            </tr><tr>
+                <td><strong>#34</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>52.6</strong></td>
+                <td>Premium Montblanc Ruyard Kipling Classique Black + Gold Foun</td>
+                <td>776.14元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>ultimate_master</td>
+            </tr><tr>
+                <td><strong>#35</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>52.6</strong></td>
+                <td>Premium Montblanc BOHEME Special Limited Edition Ball point </td>
+                <td>776.14元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>ultimate_master</td>
+            </tr><tr>
+                <td><strong>#36</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>52.6</strong></td>
+                <td>Premium Montblanc Boheme Special Limited Edition Rollerball </td>
+                <td>776.14元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>ultimate_master</td>
+            </tr><tr>
+                <td><strong>#37</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>50.5</strong></td>
+                <td>Rare Cartier Santos De Cartier Special Limited Edition Colle</td>
+                <td>843.63元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>ultimate_master</td>
+            </tr><tr>
+                <td><strong>#38</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>49.9</strong></td>
+                <td>LAMY 2000 Piston Fountain Pen Matte Black Makrolon® model 01</td>
+                <td>1,484.24元</td>
+                <td>已售出 141+ 件</td>
+                <td>-</td>
+                <td>missing-pen</td>
+            </tr><tr>
+                <td><strong>#39</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>48.2</strong></td>
+                <td>LAMY 2000 Piston Fountain Pen in Matte Black Makrolon® model</td>
+                <td>1,589.90元</td>
+                <td>已售出 98+ 件</td>
+                <td>-</td>
+                <td>missing-pen</td>
+            </tr><tr>
+                <td><strong>#40</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>44.5</strong></td>
+                <td>Premium Montblanc Heritage Rouge et Noir Spider Metamorphosi</td>
+                <td>1,046.12元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>ultimate_master</td>
+            </tr><tr>
+                <td><strong>#41</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>44.5</strong></td>
+                <td>Visconti Italy Pininfarina XL Black & Steel Fountain Pen Bro</td>
+                <td>959.79元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>nwfinejewelers</td>
+            </tr><tr>
+                <td><strong>#42</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>44.5</strong></td>
+                <td>Premium Montblanc Homage To Robert Louis Stevenson Special R</td>
+                <td>1,122.05元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>ulimate_king</td>
+            </tr><tr>
+                <td><strong>#43</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>44.5</strong></td>
+                <td>Esterbrook Niblet Fountain Pen in Tortoise with Gold Trim - </td>
+                <td>1,063.06元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>goldspotpens</td>
+            </tr><tr>
+                <td><strong>#44</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>38.5</strong></td>
+                <td>Premium Montblanc Homage to The Great Gatsby Edition Rollerb</td>
+                <td>1,518.59元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>ultimate_master</td>
+            </tr><tr>
+                <td><strong>#45</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>38.5</strong></td>
+                <td>Platinum Kanazawa Foil Fountain Pen 18K M Gold Nib Rabbit an</td>
+                <td>2,443.36元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>kokoro-mart</td>
+            </tr><tr>
+                <td><strong>#46</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>38.5</strong></td>
+                <td>ANCORA LEGGENDA Rollerball Pen Limited Edition Made in Italy</td>
+                <td>1,653.65元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>italianpenatelier</td>
+            </tr><tr>
+                <td><strong>#47</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>38.5</strong></td>
+                <td>PILOT Silvern FK-5MS 18K Fountain Pen Sterling Silver Choose</td>
+                <td>5,095.95元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>mori_planning</td>
+            </tr><tr>
+                <td><strong>#48</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>38.5</strong></td>
+                <td>Platinum 3776 Century Fountain Pen Misty Bloom 14KGold My Fa</td>
+                <td>2,190.58元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>tsunein0</td>
+            </tr><tr>
+                <td><strong>#49</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>38.5</strong></td>
+                <td>Visconti – Vintage Sassuolo LE400 pieces - Fountain Pen - Ni</td>
+                <td>6,745.11元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>collectiblepensrossi</td>
+            </tr><tr>
+                <td><strong>#50</strong></td>
+                <td><span class="badge badge-danger">× Skip</span></td>
+                <td><strong>38.5</strong></td>
+                <td>LAMY 2000 Piston Fountain Pen STAINLESS STEEL / SILVER model</td>
+                <td>1,754.22元</td>
+                <td>-</td>
+                <td>-</td>
+                <td>missing-pen</td>
+            </tr></table>
+<div class="footer">Cross-Border E-Commerce Analysis Report | Generated 2026-08-07 10:56</div>
+</div>
+</body>
+</html>

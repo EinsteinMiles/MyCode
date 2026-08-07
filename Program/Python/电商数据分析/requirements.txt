@@ -1,0 +1,29 @@
+# 电商数据分析爬虫系统
+# 核心依赖
+
+# 浏览器自动化（国产，对中文电商网站兼容好）
+DrissionPage>=4.0
+
+# 数据处理
+pandas>=2.0
+
+# 图表生成
+matplotlib>=3.7
+
+# HTML 模板引擎（用于报告生成）
+jinja2>=3.1
+
+# Excel 导出
+openpyxl>=3.1
+
+# HTML → PDF 转换（降级链第二引擎）
+weasyprint>=60
+
+# 中文分词 + 关键词提取
+jieba>=0.42
+
+# 词云图
+wordcloud>=1.9
+
+# 中文情感分析
+snownlp>=0.12.3
