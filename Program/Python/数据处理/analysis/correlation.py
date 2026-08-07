@@ -38,7 +38,9 @@ def top_correlations(corr_matrix: pd.DataFrame, top_n: int = 10,
     """
     corr = corr_matrix.copy()
     if exclude_diagonal:
-        np.fill_diagonal(corr.values, np.nan)
+        vals = corr.values.copy()
+        np.fill_diagonal(vals, np.nan)
+        corr = pd.DataFrame(vals, index=corr.index, columns=corr.columns)
 
     # 取上三角去重
     mask = np.triu(np.ones_like(corr, dtype=bool), k=1)

@@ -12,3 +12,19 @@ from .charts import (
     stacked_bar,
 )
 from .dashboard import dashboard_layout
+from .interactive import (
+    ibar_chart,
+    iline_chart,
+    ipie_chart,
+    iscatter_plot,
+    ihistogram,
+    ibox_plot,
+    iheatmap,
+    icorrelation_heatmap,
+    itime_series,
+    iarea_chart,
+    isunburst,
+    itreemap,
+    ibubble_chart,
+    idashboard,
+)

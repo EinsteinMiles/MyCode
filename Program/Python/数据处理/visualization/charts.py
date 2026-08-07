@@ -55,6 +55,11 @@ def bar_chart(df: pd.DataFrame, x: str, y: str, title: str = None,
         top_n: 只显示前N条
     """
     data = df.copy()
+    # Flatten MultiIndex columns
+    if isinstance(data.columns, pd.MultiIndex):
+        data.columns = ['_'.join(str(c) for c in col).strip('_') for col in data.columns.values]
+        if isinstance(y, tuple):
+            y = '_'.join(str(c) for c in y).strip('_')
     if sort:
         data = data.sort_values(y, ascending=horizontal)
     if top_n:
