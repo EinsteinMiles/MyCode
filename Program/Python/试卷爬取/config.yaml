@@ -1,0 +1,120 @@
+# ============================================================
+# 高中物理试卷爬取系统 - 配置文件
+# ============================================================
+
+general:
+  download_dir: "./downloads"
+  log_dir: "./logs"
+  log_level: "INFO"
+  user_agent_rotation: true
+  max_concurrent_downloads: 2
+  respect_robots_txt: false
+  request_timeout: 30
+
+# ---- 速率限制 ----
+rate_limits:
+  default:
+    requests_per_minute: 10
+    delay_between_requests_sec: 3.0
+
+  sites:
+    shijuan1.com:
+      requests_per_minute: 15
+      delay_between_requests_sec: 2.0
+
+    shijuan2.com:
+      requests_per_minute: 15
+      delay_between_requests_sec: 2.0
+
+    zxxk.com:
+      requests_per_minute: 5
+      delay_between_requests_sec: 8.0
+
+    wenku.baidu.com:
+      requests_per_minute: 3
+      delay_between_requests_sec: 15.0
+
+    jyeoo.com:
+      requests_per_minute: 5
+      delay_between_requests_sec: 6.0
+
+    zujuan.xkw.com:
+      requests_per_minute: 5
+      delay_between_requests_sec: 6.0
+
+    "21cnjy.com":
+      requests_per_minute: 5
+      delay_between_requests_sec: 6.0
+
+    "7cxk.com":
+      requests_per_minute: 8
+      delay_between_requests_sec: 4.0
+
+    "51jiaoxi.com":
+      requests_per_minute: 8
+      delay_between_requests_sec: 4.0
+
+# ---- User-Agent 池 ----
+user_agents:
+  - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0"
+  - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Safari/605.1.15"
+  - "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  - "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0"
+  - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:120.0) Gecko/20100101 Firefox/120.0"
+  - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 OPR/106.0.0.0"
+
+# ---- 搜索配置 ----
+search:
+  grades: ["高一", "高二", "高三"]
+  grade_keywords:
+    高一: ["高一物理", "高中物理必修一", "高中物理必修二"]
+    高二: ["高二物理", "高中物理选修", "高中物理选择性必修"]
+    高三: ["高三物理", "高考物理", "物理总复习"]
+  paper_types:
+    - "期中考试"
+    - "期末考试"
+    - "月考试卷"
+    - "高考模拟"
+    - "高考真题"
+    - "专项练习"
+    - "同步练习"
+  type_keywords:
+    期中考试: ["期中", "期中考试", "期中测试"]
+    期末考试: ["期末", "期末考试", "期末测试"]
+    月考试卷: ["月考", "月考试卷"]
+    高考模拟: ["模拟", "一模", "二模", "三模", "模拟考试"]
+    高考真题: ["高考真题", "高考", "高考试题", "全国卷"]
+    专项练习: ["专项", "专题", "练习", "强化"]
+    同步练习: ["同步", "课时", "随堂"]
+
+# ---- 下载配置 ----
+download:
+  overwrite_existing: false
+  resume_incomplete: true
+  filename_template: "{paper_type}_{title}.{ext}"
+  allowed_extensions: ["pdf", "doc", "docx", "rar", "zip"]
+  min_file_size_kb: 10
+  max_file_size_mb: 50
+  dedup:
+    enabled: true
+    method: "url_hash"  # "url_hash" or "content_hash"
+
+# ---- 登录凭据（敏感信息请放在 credentials.local.yaml，已加入 .gitignore）----
+credentials:
+  zxxk.com:
+    username: ""
+    password: ""
+  jyeoo.com:
+    username: ""
+    password: ""
+  21cnjy.com:
+    username: ""
+    password: ""
+  7cxk.com:
+    username: ""
+    password: ""
+  51jiaoxi.com:
+    username: ""
+    password: ""

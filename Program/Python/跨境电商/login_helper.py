@@ -4,7 +4,7 @@
 打开可见浏览器，引导手动登录，保存 Cookie 供后续使用
 
 用法: python3 login_helper.py [platform]
-支持: ebay, amazon, aliexpress
+支持: ebay, amazon, aliexpress, shopee
 """
 
 import sys
@@ -31,6 +31,11 @@ PLATFORM_CONFIG = {
         "test_url": "https://www.aliexpress.com/w/wholesale-test.html",
         "login_indicators": ["login.aliexpress.com", "passport.aliexpress.com"],
         "name": "AliExpress",
+    },
+    "shopee": {
+        "test_url": "https://shopee.sg/search?keyword=test",
+        "login_indicators": ["shopee.sg/buyer/login", "shopee.sg/account/login"],
+        "name": "Shopee",
     },
 }
 
@@ -189,7 +194,7 @@ def main():
         )
         has_cookie = "📁" if os.path.exists(cookie_file) else "  "
         print(f"  {i}. {has_cookie} {config['name']}")
-    print(f"  4. 📋 检查所有平台")
+    print(f"  5. 📋 检查所有平台")
     print(f"  0. 退出")
 
     try:
@@ -206,6 +211,8 @@ def main():
     elif choice == "3":
         login_platform("aliexpress")
     elif choice == "4":
+        login_platform("shopee")
+    elif choice == "5":
         check_all_platforms()
     else:
         print("无效选择")

@@ -1,6 +1,6 @@
 """
 统一配置模块 — 跨境电商版
-支持: eBay | Amazon | AliExpress
+支持: eBay | Amazon | AliExpress | Shopee
 """
 
 import os
@@ -63,6 +63,9 @@ AMAZON_ITEM_URL = "https://www.amazon.com/dp/{asin}"
 ALIEXPRESS_SEARCH_URL = "https://www.aliexpress.com/w/wholesale-{keyword}.html"
 ALIEXPRESS_ITEM_URL = "https://www.aliexpress.com/item/{item_id}.html"
 
+SHOPEE_SEARCH_URL = "https://shopee.sg/search?keyword={keyword}"
+SHOPEE_ITEM_URL = "https://shopee.sg/product/{shop_id}/{item_id}"
+
 # ── 平台选择器 ─────────────────────────────────────────
 EBAY_SELECTORS = {
     "search_item": ".s-item",
@@ -92,6 +95,17 @@ ALIEXPRESS_SELECTORS = {
     "orders": ".multi--trade--",
     "rating": ".multi--rating--",
     "store": ".multi--storeName--",
+}
+
+SHOPEE_SELECTORS = {
+    "search_item": "[data-sqe='item']",
+    "title": "[class*='yQ'] span, [class*='shopee-search-item-result'] [class*='name']",
+    "price": "[class*='price']",
+    "original_price": "[class*='price--original'], [class*='price--discount']",
+    "orders": "[class*='sold'], [class*='item-sold']",
+    "rating": "[class*='rating'], [class*='star']",
+    "store": "[class*='shopee'] [class*='name'], [class*='shop']",
+    "location": "[class*='location']",
 }
 
 # ── 日志 ──────────────────────────────────────────────

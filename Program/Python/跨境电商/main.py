@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 跨境电商数据分析系统 — CLI 入口
-支持: eBay | Amazon | AliExpress
+支持: eBay | Amazon | AliExpress | Shopee
 
 对标 电商数据分析/main.py TUI 模式
 """
@@ -17,7 +17,7 @@ from core import Database
 from core.models import PriceRecord
 from core.browser import BrowserManager
 
-from scrapers import EbayScraper, AmazonScraper, AliExpressScraper
+from scrapers import EbayScraper, AmazonScraper, AliExpressScraper, ShopeeScraper
 from monitors import PriceMonitor, HotTracker
 from analyzers import ReviewAnalyzer, ProductSelector
 from exporters import CsvExporter, ChartGenerator, HtmlExporter, PdfExporter
@@ -32,6 +32,7 @@ class CrossBorderApp:
         self.scraper_ebay = EbayScraper(self.browser_mgr)
         self.scraper_amazon = AmazonScraper(self.browser_mgr)
         self.scraper_aliexpress = AliExpressScraper(self.browser_mgr)
+        self.scraper_shopee = ShopeeScraper(self.browser_mgr)
         self.price_monitor = PriceMonitor(self.db)
         self.hot_tracker = HotTracker(self.db)
         self.review_analyzer = ReviewAnalyzer(self.db)
@@ -84,7 +85,7 @@ class CrossBorderApp:
     def _print_banner():
         print("\n" + "=" * 50)
         print("    📊 跨境电商数据分析系统 v1.0")
-        print("    支持平台: eBay | Amazon | AliExpress")
+        print("    支持平台: eBay | Amazon | AliExpress | Shopee")
         print("=" * 50)
 
     @staticmethod
@@ -106,13 +107,14 @@ class CrossBorderApp:
 
     def _menu_scrape_products(self):
         print("\n── 🔍 批量采集商品 ──")
-        print("平台: [1] eBay  [2] Amazon  [3] AliExpress")
-        pf = input("选择平台 (1-3): ").strip()
+        print("平台: [1] eBay  [2] Amazon  [3] AliExpress  [4] Shopee")
+        pf = input("选择平台 (1-4): ").strip()
 
         platform_map = {
             "1": ("eBay", self.scraper_ebay),
             "2": ("Amazon", self.scraper_amazon),
             "3": ("AliExpress", self.scraper_aliexpress),
+            "4": ("Shopee", self.scraper_shopee),
         }
         if pf not in platform_map:
             print("无效选择")
@@ -134,9 +136,12 @@ class CrossBorderApp:
 
         print(f"\n正在采集 {platform} '{keyword}'，最多 {pages} 页...")
         print(f"⚠️  Amazon 反爬严格，建议使用较少页数 (1-2)")
+        print(f"⚠️  Shopee 有 Cloudflare 防护，建议使用较少页数 (1-3)")
 
         if platform == "Amazon":
             print("   建议先在菜单 [8] 中登录，降低验证码风险")
+        if platform == "Shopee":
+            print("   建议先在菜单 [8] 中登录，降低 Cloudflare 验证风险")
 
         products = scraper.search_products(keyword, max_pages=pages, category=category)
 
@@ -154,6 +159,10 @@ class CrossBorderApp:
             elif platform == "AliExpress":
                 print(f"   1. AliExpress 需要更长加载时间 — 尝试减少页数")
                 print(f"   2. 可能根据地区跳转")
+            elif platform == "Shopee":
+                print(f"   1. Shopee 有 Cloudflare 验证 — 先通过菜单 [8] 登录")
+                print(f"   2. 尝试设置 headless=False 并手动完成验证")
+                print(f"   3. shopee.sg 可能根据 IP 地区跳转")
             print(f"   4. 网络/代理问题 — 平台可能屏蔽了你的 IP")
             return
 
@@ -176,7 +185,7 @@ class CrossBorderApp:
 
         if choice == "1":
             url = input("商品链接: ").strip()
-            platform = input("平台 (ebay/amazon/aliexpress): ").strip()
+            platform = input("平台 (ebay/amazon/aliexpress/shopee): ").strip()
             task_id = self.price_monitor.add_product_by_url(url, platform)
             if task_id > 0:
                 print(f"✅ 已添加监控任务 #{task_id}")
@@ -233,7 +242,7 @@ class CrossBorderApp:
         choice = input("请选择: ").strip()
 
         if choice == "1":
-            platform = input("平台 (ebay/amazon/aliexpress): ").strip()
+            platform = input("平台 (ebay/amazon/aliexpress/shopee): ").strip()
             category = input("分类关键词: ").strip()
             task_id = self.hot_tracker.add_category_tracking(platform, category)
             if task_id > 0:
@@ -248,9 +257,9 @@ class CrossBorderApp:
                 print(f"  #{t.id} | {t.platform} | {t.category} | {t.keywords}")
 
         elif choice == "3":
-            platform = input("平台 (ebay/amazon/aliexpress): ").strip()
+            platform = input("平台 (ebay/amazon/aliexpress/shopee): ").strip()
             category = input("分类关键词: ").strip()
-            pf_map = {"ebay": self.scraper_ebay, "amazon": self.scraper_amazon, "aliexpress": self.scraper_aliexpress}
+            pf_map = {"ebay": self.scraper_ebay, "amazon": self.scraper_amazon, "aliexpress": self.scraper_aliexpress, "shopee": self.scraper_shopee}
             scraper = pf_map.get(platform)
             if not scraper:
                 print("无效平台")
@@ -307,7 +316,7 @@ class CrossBorderApp:
 
         if product.url:
             print("正在抓取评论 (可能需要几分钟)...")
-            platform_map = {"ebay": self.scraper_ebay, "amazon": self.scraper_amazon, "aliexpress": self.scraper_aliexpress}
+            platform_map = {"ebay": self.scraper_ebay, "amazon": self.scraper_amazon, "aliexpress": self.scraper_aliexpress, "shopee": self.scraper_shopee}
             scraper = platform_map.get(product.platform)
             if scraper:
                 reviews = scraper.get_reviews(product.url, max_pages=3)
@@ -375,9 +384,9 @@ class CrossBorderApp:
         choice = input("请选择: ").strip()
 
         if choice == "2":
-            print("平台: [1] eBay  [2] Amazon  [3] AliExpress")
-            pf = input("选择平台 (1-3): ").strip()
-            pf_map = {"1": ("ebay", self.scraper_ebay), "2": ("amazon", self.scraper_amazon), "3": ("aliexpress", self.scraper_aliexpress)}
+            print("平台: [1] eBay  [2] Amazon  [3] AliExpress  [4] Shopee")
+            pf = input("选择平台 (1-4): ").strip()
+            pf_map = {"1": ("ebay", self.scraper_ebay), "2": ("amazon", self.scraper_amazon), "3": ("aliexpress", self.scraper_aliexpress), "4": ("shopee", self.scraper_shopee)}
             if pf not in pf_map:
                 print("无效选择")
                 return
@@ -394,7 +403,7 @@ class CrossBorderApp:
             self.db.upsert_products_batch(products)
             print(f"采集了 {len(products)} 个商品")
 
-        platform = input("按平台筛选 (ebay/amazon/aliexpress/留空=全部): ").strip()
+        platform = input("按平台筛选 (ebay/amazon/aliexpress/shopee/留空=全部): ").strip()
         category = input("按分类筛选 (留空=全部): ").strip()
 
         products = self.db.get_products(platform=platform, category=category, limit=200)
@@ -527,7 +536,7 @@ class CrossBorderApp:
             print(f"✅ 已导出: {path}")
 
         elif choice == "2":
-            platform = input("平台 (ebay/amazon/aliexpress): ").strip()
+            platform = input("平台 (ebay/amazon/aliexpress/shopee): ").strip()
             products = self.db.get_products(platform=platform, limit=500)
             if not products:
                 print(f"{platform} 没有商品")
@@ -557,7 +566,8 @@ class CrossBorderApp:
         print("[1] 登录 eBay")
         print("[2] 登录 Amazon")
         print("[3] 登录 AliExpress")
-        print("[4] 检查所有平台登录状态")
+        print("[4] 登录 Shopee")
+        print("[5] 检查所有平台登录状态")
         choice = input("请选择: ").strip()
 
         from login_helper import login_platform, check_all_platforms
@@ -569,6 +579,8 @@ class CrossBorderApp:
         elif choice == "3":
             login_platform("aliexpress")
         elif choice == "4":
+            login_platform("shopee")
+        elif choice == "5":
             check_all_platforms()
         else:
             print("无效选择")

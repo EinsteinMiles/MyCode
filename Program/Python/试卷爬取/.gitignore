@@ -1,0 +1,31 @@
+# 下载的文件
+downloads/
+
+# 日志
+logs/
+
+# Cookie（包含登录凭据）
+cookies/
+*.pkl
+
+# 数据库
+storage/downloads.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# 敏感配置
+credentials.local.yaml
+
+# IDE
+.vscode/
+.idea/
+
+# 临时文件
+*.part
+*.tmp
+.DS_Store

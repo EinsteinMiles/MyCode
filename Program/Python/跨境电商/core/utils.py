@@ -87,6 +87,22 @@ def parse_currency(text: str) -> str:
         return "CAD"
     if "AUD" in text_upper or "AU$" in text or "A$" in text:
         return "AUD"
+    if "SGD" in text_upper or "S$" in text:
+        return "SGD"
+    if "MYR" in text_upper or "RM" in text_upper:
+        return "MYR"
+    if "IDR" in text_upper or "Rp" in text:
+        return "IDR"
+    if "THB" in text_upper or "฿" in text:
+        return "THB"
+    if "PHP" in text_upper or "₱" in text:
+        return "PHP"
+    if "VND" in text_upper or "₫" in text:
+        return "VND"
+    if "TWD" in text_upper or "NT$" in text:
+        return "TWD"
+    if "BRL" in text_upper or "R$" in text:
+        return "BRL"
     if "$" in text or "USD" in text_upper:
         return "USD"
     return "USD"
