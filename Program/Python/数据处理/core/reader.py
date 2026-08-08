@@ -38,7 +38,8 @@ def read_file(path: str, **kwargs) -> pd.DataFrame:
         path: 文件路径
         **kwargs: 传递给底层读取函数的额外参数
             - sheet_name: Excel 工作表名 (默认第一个)
-            - header: 表头行号 (默认 0)
+            - header: 表头行号，None=无表头，0=第1行是表头(默认)，
+                      1=第2行是表头，以此类推
             - encoding: 编码 (默认自动检测)
             - chunksize: 分块大小
 
@@ -46,22 +47,33 @@ def read_file(path: str, **kwargs) -> pd.DataFrame:
         pd.DataFrame
     """
     ext = detect_format(path)
-    logger.info(f"读取文件: {path} [{ext}]")
+    header = kwargs.pop('header', 0)
+    logger.info(f"读取文件: {path} [{ext}] (header={'无' if header is None else f'第{header+1}行'})")
+
+    # sheet_name is only for Excel files
+    sheet_name = kwargs.pop('sheet_name', 0)
 
     if ext == '.csv':
-        return _read_csv(path, **kwargs)
+        df = _read_csv(path, header=header, **kwargs)
     elif ext in ('.xlsx', '.xls'):
-        return _read_excel(path, **kwargs)
+        df = _read_excel(path, header=header, sheet_name=sheet_name, **kwargs)
     elif ext == '.json':
-        return _read_json(path, **kwargs)
+        df = _read_json(path, **kwargs)
     elif ext == '.tsv':
-        return _read_csv(path, sep='\t', **kwargs)
+        df = _read_csv(path, sep='\t', header=header, **kwargs)
     elif ext == '.txt':
-        return _read_txt(path, **kwargs)
+        df = _read_txt(path, header=header, **kwargs)
     elif ext == '.docx':
-        return _read_docx(path, **kwargs)
+        df = _read_docx(path, **kwargs)
     else:
         raise ValueError(f"不支持的文件格式: {ext}")
+
+    # 如果无表头，生成友好的列名
+    if header is None:
+        df.columns = [f'列{i+1}' for i in range(len(df.columns))]
+        logger.info(f"  无表头模式，自动生成 {len(df.columns)} 个列名: 列1 ~ 列{len(df.columns)}")
+
+    return df
 
 
 def read_multiple(paths: list[str], concat: bool = True,
@@ -111,12 +123,14 @@ def read_chunked(path: str, chunksize: int = None, **kwargs) -> pd.DataFrame:
     if ext in ('.csv', '.tsv'):
         sep = '\t' if ext == '.tsv' else ','
         encoding = kwargs.pop('encoding', None) or detect_encoding(path)
+        header = kwargs.pop('header', 0)
         chunks = pd.read_csv(
             path, sep=sep, encoding=encoding,
-            chunksize=chunksize, **kwargs
+            chunksize=chunksize, header=header, **kwargs
         )
     elif ext in ('.xlsx', '.xls'):
-        chunks = pd.read_excel(path, chunksize=chunksize, **kwargs)
+        header = kwargs.pop('header', 0)
+        chunks = pd.read_excel(path, chunksize=chunksize, header=header, **kwargs)
     else:
         return read_file(path, **kwargs)
 
@@ -127,6 +141,11 @@ def read_chunked(path: str, chunksize: int = None, **kwargs) -> pd.DataFrame:
             logger.info(f"  已读取 {(i+1) * chunksize} 行...")
 
     result = pd.concat(all_chunks, ignore_index=True)
+
+    # 无表头时生成友好列名
+    if header is None:
+        result.columns = [f'列{i+1}' for i in range(len(result.columns))]
+
     logger.info(f"分块读取完成: {result.shape[0]} 行")
     return result
 
@@ -183,6 +202,7 @@ def _read_txt(path: str, **kwargs) -> pd.DataFrame:
     """读取文本文件，按行读取"""
     encoding = kwargs.pop('encoding', None) or detect_encoding(path)
     sep = kwargs.pop('sep', None)
+    header = kwargs.pop('header', 0)
 
     with open(path, 'r', encoding=encoding) as f:
         lines = f.readlines()
@@ -196,13 +216,27 @@ def _read_txt(path: str, **kwargs) -> pd.DataFrame:
     if sep:
         # 有分隔符：解析为列
         rows = [l.split(sep) for l in lines]
-        return pd.DataFrame(rows)
     elif '\t' in lines[0] and len(lines[0].split('\t')) > 1:
         rows = [l.split('\t') for l in lines]
-        return pd.DataFrame(rows)
     else:
         # 纯文本，每行一条
         return pd.DataFrame({'line': lines})
+
+    # 处理表头
+    if header is None:
+        return pd.DataFrame(rows)
+    elif header > 0:
+        # 跳过 header 之前的行作为表头之上的无效行
+        skip_rows = rows[:header]
+        data_rows = rows[header:]
+        if data_rows:
+            return pd.DataFrame(data_rows[1:], columns=data_rows[0])
+        return pd.DataFrame()
+    else:
+        # header=0: 第一行是表头
+        if len(rows) > 1:
+            return pd.DataFrame(rows[1:], columns=rows[0])
+        return pd.DataFrame(rows)
 
 
 def _read_docx(path: str, **kwargs) -> pd.DataFrame:

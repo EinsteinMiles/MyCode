@@ -35,14 +35,29 @@ class Product:
             return self.price_range
         return f"¥{self.price:.2f}"
 
+    # 合理的单商品销量上限（超过此值视为脏数据）
+    MAX_REASONABLE_SALES = 50_000_000
+
     def display_sales(self) -> str:
-        if self.sales_text:
+        # 如果 sales_text 是有效的销量文本就使用它
+        if self.sales_text and self._is_valid_sales_text(self.sales_text):
             return self.sales_text
-        if self.sales_count > 0:
+        if 0 < self.sales_count <= self.MAX_REASONABLE_SALES:
             if self.sales_count >= 10000:
                 return f"{self.sales_count/10000:.1f}万+"
             return str(self.sales_count)
         return "-"
+
+    @staticmethod
+    def _is_valid_sales_text(text: str) -> bool:
+        """检查 sales_text 是否真的像销量数据（而非服务评分等垃圾文本）"""
+        import re
+        if len(text) > 25:
+            return False
+        for garbage in ["采购咨询", "退换体验", "品质体验", "纠纷解决", "综合服务", "验厂报告", "找相似"]:
+            if garbage in text:
+                return False
+        return bool(re.search(r"成交|已售|销量|月销|笔|件|单|\+|万|\d", text))
 
 
 @dataclass

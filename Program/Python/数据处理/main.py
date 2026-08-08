@@ -11,6 +11,13 @@
 import os
 import sys
 import traceback
+try:
+    import readline  # 启用终端行编辑：退格删除、方向键、Ctrl+A/E/K/U/W
+except ImportError:
+    try:
+        import pyreadline3 as readline  # Windows 备选
+    except ImportError:
+        pass  # 无 readline 也能运行，但编辑体验较差
 import pandas as pd
 import numpy as np
 
@@ -182,7 +189,6 @@ class DataProcessor:
                     print("❌ 无效选择")
             except Exception as e:
                 print(f"❌ 错误: {e}")
-                traceback.print_exc()
 
     def _read_single(self):
         path = input("📂 文件路径: ").strip()
@@ -190,10 +196,50 @@ class DataProcessor:
             print(f"❌ 文件不存在: {path}")
             return
 
-        sheet = input("工作表名 (Excel文件, 直接回车默认第一个): ").strip() or 0
-        self.df = read_file(path, sheet_name=sheet)
+        # 表头配置
+        header = self._ask_header()
+
+        # Excel 文件询问工作表名
+        kwargs = {'header': header}
+        ext = os.path.splitext(path)[1].lower()
+        if ext in ('.xlsx', '.xls'):
+            sheet = input("工作表名 (直接回车默认第一个): ").strip() or 0
+            kwargs['sheet_name'] = sheet
+
+        self.df = read_file(path, **kwargs)
         self.file_path = path
         self._show_data_summary()
+
+    def _ask_header(self) -> int | None:
+        """询问用户表头配置
+
+        Returns:
+            None = 无表头（自动生成 列1, 列2...）
+            0 = 第1行是表头（默认）
+            1 = 第2行是表头
+            2 = 第3行是表头
+            ...
+        """
+        print("""
+表头设置:
+  回车跳过 = 第1行是表头 (默认)
+  0 = 无表头，数据从第1行开始 (自动生成 列1, 列2, ...)
+  1 = 第2行是表头 (跳过第1行)
+  2 = 第3行是表头 (跳过第1-2行)
+  ...以此类推
+        """)
+        choice = input("👉 表头在哪一行? (回车=第1行, 0=无表头, 1=第2行...): ").strip()
+
+        if choice == '':
+            return 0  # 默认：第1行是表头
+        elif choice == '0':
+            return None  # 无表头
+        else:
+            try:
+                return int(choice)  # 第 N+1 行是表头
+            except ValueError:
+                print("⚠ 输入无效，使用默认(第1行是表头)")
+                return 0
 
     def _read_batch(self):
         directory = input("📁 目录路径 (直接回车=当前目录): ").strip() or '.'
@@ -214,7 +260,8 @@ class DataProcessor:
 
         confirm = input(f"\n合并读取全部 {len(files)} 个文件? (y/n): ").strip().lower()
         if confirm == 'y':
-            self.df = read_multiple(files, concat=True)
+            header = self._ask_header()
+            self.df = read_multiple(files, concat=True, header=header)
             self.file_path = directory
             self._show_data_summary()
 
@@ -222,7 +269,8 @@ class DataProcessor:
         path = input("📂 文件路径: ").strip()
         chunksize = input("每块行数 (直接回车=自动): ").strip()
         chunksize = int(chunksize) if chunksize else None
-        self.df = read_chunked(path, chunksize=chunksize)
+        header = self._ask_header()
+        self.df = read_chunked(path, chunksize=chunksize, header=header)
         self.file_path = path
         self._show_data_summary()
 
@@ -352,7 +400,6 @@ class DataProcessor:
                     print("❌ 无效选择")
             except Exception as e:
                 print(f"❌ 错误: {e}")
-                traceback.print_exc()
 
     def _op_filter_condition(self):
         print("\n列名: " + ", ".join(self.df.columns.tolist()))
@@ -440,7 +487,8 @@ class DataProcessor:
 
     def _op_merge_key(self):
         path = input("📂 要合并的文件路径: ").strip()
-        right_df = read_file(path)
+        header = self._ask_header()
+        right_df = read_file(path, header=header)
         print(f"左表列: {', '.join(self.df.columns.tolist())}")
         print(f"右表列: {', '.join(right_df.columns.tolist())}")
 
@@ -458,7 +506,8 @@ class DataProcessor:
 
     def _op_merge_rows(self):
         path = input("📂 要追加的文件路径: ").strip()
-        right_df = read_file(path)
+        header = self._ask_header()
+        right_df = read_file(path, header=header)
         self.df = merge_rows(self.df, right_df)
         self._show_data_summary()
 
@@ -532,7 +581,8 @@ class DataProcessor:
 
     def _op_vlookup(self):
         path = input("📂 查找表文件路径: ").strip()
-        lookup_df = read_file(path)
+        header = self._ask_header()
+        lookup_df = read_file(path, header=header)
         print(f"主表列: {', '.join(self.df.columns.tolist())}")
         print(f"查找表列: {', '.join(lookup_df.columns.tolist())}")
         key = input("主表关联列: ").strip()
@@ -647,7 +697,6 @@ class DataProcessor:
                     print("❌ 无效选择")
             except Exception as e:
                 print(f"❌ 错误: {e}")
-                traceback.print_exc()
 
     # ============================================================
     #  4. 数据可视化菜单
@@ -726,56 +775,86 @@ class DataProcessor:
                     print("❌ 无效选择")
             except Exception as e:
                 print(f"❌ 错误: {e}")
-                traceback.print_exc()
 
     def _chart_bar(self):
         print(f"列: {', '.join(self.df.columns.tolist())}")
         x = input("X轴列 (类别): ").strip()
         y = input("Y轴列 (数值): ").strip()
+        if not x or not y:
+            print("❌ 请填写X轴和Y轴列名")
+            return
         filename = input("文件名 (如 bar.png): ").strip() or 'bar_chart.png'
-        bar_chart(self.df, x=x, y=y, filename=filename)
+        path = bar_chart(self.df, x=x, y=y, filename=filename)
+        print(f"✅ 柱状图已保存: {path}")
 
     def _chart_line(self):
         x = input("X轴列: ").strip()
         y_cols = input("Y轴列 (多列用逗号, 如 收入,成本): ").strip()
         y_list = parse_column_list(y_cols)
+        if not y_list:
+            print("❌ 请至少输入一个Y轴列")
+            return
         filename = input("文件名: ").strip() or 'line_chart.png'
         if len(y_list) > 1:
-            multi_line_chart(self.df, x=x, y_columns=y_list, filename=filename)
+            path = multi_line_chart(self.df, x=x, y_columns=y_list, filename=filename)
         else:
-            line_chart(self.df, x=x, y=y_list[0], filename=filename)
+            path = line_chart(self.df, x=x, y=y_list[0], filename=filename)
+        print(f"✅ 折线图已保存: {path}")
 
     def _chart_pie(self):
         labels = input("标签列: ").strip()
         values = input("数值列: ").strip()
+        if not labels or not values:
+            print("❌ 请填写标签列和数值列")
+            return
         donut = input("环形图? (y/n): ").strip().lower() == 'y'
         filename = input("文件名: ").strip() or 'pie_chart.png'
-        pie_chart(self.df, labels_col=labels, values_col=values, donut=donut, filename=filename)
+        path = pie_chart(self.df, labels_col=labels, values_col=values, donut=donut, filename=filename)
+        print(f"✅ 饼图已保存: {path}")
 
     def _chart_scatter(self):
         x = input("X轴列: ").strip()
         y = input("Y轴列: ").strip()
+        if not x or not y:
+            print("❌ 请填写X轴和Y轴列名")
+            return
         color = input("颜色映射列 (直接回车=无): ").strip() or None
         filename = input("文件名: ").strip() or 'scatter.png'
-        scatter_plot(self.df, x=x, y=y, color=color, filename=filename)
+        path = scatter_plot(self.df, x=x, y=y, color=color, filename=filename)
+        print(f"✅ 散点图已保存: {path}")
 
     def _chart_hist(self):
         col = input("列名: ").strip()
+        if not col:
+            print("❌ 请输入列名")
+            return
         bins = input("柱数 (默认20): ").strip()
-        bins = int(bins) if bins else 20
+        try:
+            bins = int(bins) if bins else 20
+        except ValueError:
+            print("❌ 柱数请输入数字")
+            return
         filename = input("文件名: ").strip() or 'histogram.png'
-        histogram(self.df, column=col, bins=bins, filename=filename)
+        path = histogram(self.df, column=col, bins=bins, filename=filename)
+        print(f"✅ 直方图已保存: {path}")
 
     def _chart_box(self):
         mode = input("模式: 1=单列分布, 2=分组对比 (1/2): ").strip()
         filename = input("文件名: ").strip() or 'boxplot.png'
         if mode == '1':
             col = input("列名: ").strip()
-            box_plot(self.df, column=col, filename=filename)
+            if not col:
+                print("❌ 请输入列名")
+                return
+            path = box_plot(self.df, column=col, filename=filename)
         else:
             x = input("分组列 (X): ").strip()
             y = input("数值列 (Y): ").strip()
-            box_plot(self.df, x=x, y=y, filename=filename)
+            if not x or not y:
+                print("❌ 请填写X分组列和Y数值列")
+                return
+            path = box_plot(self.df, x=x, y=y, filename=filename)
+        print(f"✅ 箱线图已保存: {path}")
 
     def _chart_heatmap(self):
         print("使用当前数据的前30列数值数据生成热力图...")
@@ -783,21 +862,27 @@ class DataProcessor:
         if numeric.shape[1] > 30:
             numeric = numeric.iloc[:, :30]
         filename = input("文件名: ").strip() or 'heatmap.png'
-        heatmap(numeric, filename=filename)
+        path = heatmap(numeric, filename=filename)
+        print(f"✅ 热力图已保存: {path}")
 
     def _chart_corr_heatmap(self):
         filename = input("文件名: ").strip() or 'correlation.png'
         method = input("方法 (pearson/spearman/kendall, 默认pearson): ").strip() or 'pearson'
-        correlation_heatmap(self.df, method=method, filename=filename)
+        path = correlation_heatmap(self.df, method=method, filename=filename)
+        print(f"✅ 相关性热力图已保存: {path}")
 
     def _chart_timeseries(self):
         print(f"列: {', '.join(self.df.columns.tolist())}")
         date_col = input("日期列: ").strip()
         val_cols = parse_column_list(input("数值列 (逗号分隔): ").strip())
+        if not val_cols:
+            print("❌ 请至少输入一个数值列")
+            return
         resample = input("重采样 (M=月, W=周, Q=季度, 回车=不重采样): ").strip() or None
         filename = input("文件名: ").strip() or 'timeseries.png'
-        time_series(self.df, date_col=date_col, value_cols=val_cols,
+        path = time_series(self.df, date_col=date_col, value_cols=val_cols,
                     resample=resample, filename=filename)
+        print(f"✅ 时间序列图已保存: {path}")
 
     def _chart_dashboard(self):
         print("组合仪表板 - 选择几个图表组合在一起")
@@ -814,7 +899,8 @@ class DataProcessor:
                 'params': self._get_plot_params(plot_type),
             })
         filename = input("文件名: ").strip() or 'dashboard.png'
-        dashboard_layout(plots, filename=filename)
+        path = dashboard_layout(plots, filename=filename)
+        print(f"✅ 仪表板已保存: {path}")
 
     def _get_plot_params(self, plot_type: str) -> dict:
         """根据图表类型获取参数"""
@@ -849,6 +935,9 @@ class DataProcessor:
     def _ichart_bar(self):
         x = input("X轴列: ").strip()
         y = input("Y轴列: ").strip()
+        if not x or not y:
+            print("❌ 请填写X轴和Y轴列名")
+            return
         filename = input("文件名 (如 ibar.html): ").strip() or 'interactive_bar.html'
         path = ibar_chart(self.df, x=x, y=y, filename=filename)
         print(f"✅ 交互式柱状图: {path}")
@@ -857,6 +946,9 @@ class DataProcessor:
         x = input("X轴列: ").strip()
         y_cols = input("Y轴列 (多列逗号分隔): ").strip()
         y = parse_column_list(y_cols)
+        if not y:
+            print("❌ 请至少输入一个Y轴列")
+            return
         filename = input("文件名: ").strip() or 'interactive_line.html'
         path = iline_chart(self.df, x=x, y=y[0] if len(y) == 1 else y, filename=filename)
         print(f"✅ 交互式折线图: {path}")
@@ -864,6 +956,9 @@ class DataProcessor:
     def _ichart_pie(self):
         labels = input("标签列: ").strip()
         values = input("数值列: ").strip()
+        if not labels or not values:
+            print("❌ 请填写标签列和数值列")
+            return
         donut = input("环形图? (y/n): ").strip().lower() == 'y'
         filename = input("文件名: ").strip() or 'interactive_pie.html'
         path = ipie_chart(self.df, labels_col=labels, values_col=values, donut=donut, filename=filename)
@@ -872,6 +967,9 @@ class DataProcessor:
     def _ichart_box(self):
         x = input("分组列 (直接回车=单列): ").strip() or None
         y = input("数值列: ").strip()
+        if not y:
+            print("❌ 请输入数值列")
+            return
         filename = input("文件名: ").strip() or 'interactive_box.html'
         path = ibox_plot(self.df, x=x, y=y, filename=filename)
         print(f"✅ 交互式箱线图: {path}")
@@ -893,6 +991,9 @@ class DataProcessor:
     def _ichart_timeseries(self):
         date_col = input("日期列: ").strip()
         val_cols = parse_column_list(input("数值列 (逗号分隔): ").strip())
+        if not val_cols:
+            print("❌ 请至少输入一个数值列")
+            return
         resample = input("重采样 (M/W/Q, 回车跳过): ").strip() or None
         filename = input("文件名: ").strip() or 'interactive_timeseries.html'
         path = itime_series(self.df, date_col=date_col, value_cols=val_cols, resample=resample, filename=filename)
@@ -901,6 +1002,9 @@ class DataProcessor:
     def _ichart_scatter(self):
         x = input("X轴列: ").strip()
         y = input("Y轴列: ").strip()
+        if not x or not y:
+            print("❌ 请填写X轴和Y轴列名")
+            return
         color = input("颜色映射列 (回车=无): ").strip() or None
         filename = input("文件名: ").strip() or 'interactive_scatter.html'
         path = iscatter_plot(self.df, x=x, y=y, color=color, filename=filename)
@@ -910,6 +1014,9 @@ class DataProcessor:
         print("层级图类型: 1.旭日图  2.矩形树图")
         t = input("👉 ").strip()
         path_cols = parse_column_list(input("层级列 (逗号分隔, 如 部门,职位): ").strip())
+        if not path_cols:
+            print("❌ 请至少输入一个层级列")
+            return
         values = input("数值列 (回车=计数): ").strip() or None
         filename = input("文件名: ").strip() or 'interactive_hierarchy.html'
         if t == '2':
@@ -1021,7 +1128,6 @@ class DataProcessor:
                     print("❌ 无效选择")
             except Exception as e:
                 print(f"❌ 错误: {e}")
-                traceback.print_exc()
 
     # ============================================================
     #  6. 批量处理菜单
@@ -1155,7 +1261,6 @@ class DataProcessor:
                     print("❌ 无效选择")
             except Exception as e:
                 print(f"❌ 错误: {e}")
-                traceback.print_exc()
 
     # ============================================================
     #  辅助方法

@@ -72,24 +72,59 @@ def parse_sales(text: str) -> int:
     """
     解析销量文本 → int
     支持: "1.2万+", "已售10万+", "1000+", "5000笔", "成交 2.3万笔"
+
+    返回 0 如果：
+    - 文本不包含销量特征关键字
+    - 解析结果超过合理上限（单商品 5000 万已是极端情况）
     """
     if not text or not isinstance(text, str):
         return 0
 
-    text = text.strip().replace(",", "").replace(" ", "").replace("已售", "").replace("成交", "").replace("笔", "").replace("件", "").rstrip("+")
+    # 前置校验：必须包含销量特征（纯数字文本 + 关键字）
+    has_keyword = bool(re.search(r"成交|已售|销量|月销|笔|件|单|\+|万", text))
+    is_plain_number = bool(re.fullmatch(r"\d+", text.strip()))
+    if not has_keyword and not is_plain_number:
+        return 0
+
+    # 长度限制：正常销量文本很短
+    if len(text) > 25 and not is_plain_number:
+        return 0
+
+    # 排除服务评分等垃圾文本
+    for garbage in ["采购咨询", "退换体验", "品质体验", "纠纷解决", "综合服务", "验厂报告", "找相似"]:
+        if garbage in text:
+            return 0
+
+    text = (
+        text.strip()
+        .replace(",", "")
+        .replace(" ", "")
+        .replace("已售", "")
+        .replace("成交", "")
+        .replace("笔", "")
+        .replace("件", "")
+        .rstrip("+")
+    )
 
     if "万" in text:
         num = re.sub(r"[^\d.]", "", text.replace("万", ""))
         try:
-            return int(float(num) * 10000)
+            result = int(float(num) * 10000)
+        except ValueError:
+            return 0
+    else:
+        num = re.sub(r"[^\d]", "", text)
+        try:
+            result = int(num) if num else 0
         except ValueError:
             return 0
 
-    num = re.sub(r"[^\d]", "", text)
-    try:
-        return int(num) if num else 0
-    except ValueError:
+    # 合理性检验：单商品销量超过 5000 万视为异常
+    MAX_REASONABLE_SALES = 50_000_000
+    if result > MAX_REASONABLE_SALES:
         return 0
+
+    return result
 
 
 def retry_call(

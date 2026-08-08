@@ -23,6 +23,29 @@ from core.models import Product, Review, HotRanking
 from core.utils import parse_price, parse_sales, clean_text, now_str
 
 
+
+def _is_valid_sales_text(text: str) -> bool:
+    """
+    验证文本是否像真实的销量数据（而非服务评分等垃圾文本）。
+    1688 真实销量格式: "成交1.2万+", "已售5000笔", "月销100+件" 等
+    """
+    if not text or not isinstance(text, str):
+        return False
+    # 必须包含销量特征关键字
+    has_keyword = bool(re.search(r'成交|已售|销量|月销|笔|件|单|\+', text))
+    if not has_keyword:
+        return False
+    # 长度限制：正常的销量文本很短
+    if len(text) > 25:
+        return False
+    # 排除服务评分等垃圾文本
+    garbage_patterns = ['采购咨询', '退换体验', '品质体验', '纠纷解决', '综合服务', '验厂报告', '找相似']
+    for gp in garbage_patterns:
+        if gp in text:
+            return False
+    return True
+
+
 class Alibaba1688Scraper(BaseScraper):
     """1688 平台爬虫（实测版）"""
 
@@ -86,6 +109,14 @@ class Alibaba1688Scraper(BaseScraper):
             logger.error(f"[1688] 异常: {e}")
 
         logger.info(f"[1688] 完成: {len(all_products)} 个商品")
+
+        # 对没有销量数据的商品，尝试从详情页补充
+        if all_products:
+            no_sales = sum(1 for p in all_products if p.sales_count == 0)
+            if no_sales > 0:
+                logger.info(f"[1688] {no_sales} 个商品无销量，尝试从详情页补充...")
+                all_products = self.enrich_sales_from_detail(all_products)
+
         return all_products
 
     # ── 搜索框关键词修正 ──────────────────────────────
@@ -218,11 +249,31 @@ for (var i = 0; i < links.length; i++) {
         priceText = (priceEl.textContent || '').trim().substring(0, 50);
     }
 
-    // 销量/成交
+    // 销量/成交 — 1688 销量元素通常包含"成交"/"已售"等关键字
+    // 注意：[class*="offer"] 太宽泛，会匹配到服务评分等无关元素
     var salesText = '';
-    var salesEl = card.querySelector('[class*="sale"], [class*="trade"], [class*="offer"]');
-    if (salesEl) {
-        salesText = (salesEl.textContent || '').trim().substring(0, 50);
+    var salesCandidates = card.querySelectorAll('[class*="sale"], [class*="trade"], [class*="sold"], [class*="sell"], [class*="deal"], [class*="transaction"]');
+    for (var si = 0; si < salesCandidates.length; si++) {
+        var st = (salesCandidates[si].textContent || '').trim();
+        // 只接受包含销量关键字的文本（且长度合理）
+        if (/成交|已售|销量|月销|\d+\+?笔|\d+\+?件|\d+\+?单|\d+\.?\d*万/.test(st) && st.length <= 30) {
+            salesText = st.substring(0, 50);
+            break;
+        }
+    }
+    // 兜底：从卡片完整文本中匹配销量模式
+    if (!salesText) {
+        var cardText = (card.textContent || '').replace(/\s+/g, ' ').trim();
+        var salesMatch = cardText.match(/(?:成交|已售|销量|月销|30天.*?成交|90天.*?成交)\s*[\d.]+[万万千]?\+?\s*(?:笔|件|单)?/);
+        if (salesMatch) {
+            salesText = salesMatch[0].substring(0, 50);
+        } else {
+            // 尝试简短模式：数字 + 单位，但只取前 30 字符内的
+            var shortMatch = cardText.match(/(\d+\.?\d*万?\+?)\s*[笔件单]/);
+            if (shortMatch && shortMatch.index < 200) {
+                salesText = shortMatch[0].substring(0, 50);
+            }
+        }
     }
 
     // 店铺名
@@ -250,6 +301,13 @@ return JSON.stringify(items);
             items = json.loads(raw)
         except json.JSONDecodeError:
             return []
+
+        # 调试：打印第 1 个商品的卡片文本（帮助定位销量数据在 DOM 中的位置）
+        if items:
+            first_text = items[0].get("text", "")
+            first_sales = items[0].get("salesText", "")
+            logger.info(f"[1688] 🔍 卡片文本(前300字): {first_text[:300]}")
+            logger.info(f"[1688] 🔍 销量元素: {first_sales!r}")
 
         products = []
         for item in items:
@@ -303,19 +361,32 @@ return JSON.stringify(items);
             # ── 销量提取 ──
             sales_text = ""
             sales_count = 0
-            # 优先使用卡片内 sales 元素
+            # 优先使用卡片内 sales 元素提取的结果
             sales_raw = item.get("salesText", "")
-            if sales_raw:
+            # 验证 sales_raw 确实包含销量相关关键字，否则丢弃
+            if sales_raw and _is_valid_sales_text(sales_raw):
                 sales_text = sales_raw
                 sales_count = parse_sales(sales_raw)
+            # sales 元素无效时，用正则从卡片文本中提取
             if not sales_text:
-                trade_match = re.search(
-                    r'(?:成交|已售|销量)\s*([\d.]+[万万千]?\+?\s*(?:笔|件|单)?)',
-                    text
-                )
-                if trade_match:
-                    sales_text = trade_match.group(0)
-                    sales_count = parse_sales(sales_text)
+                # 1688 常见销量格式（按优先级排列）
+                sales_patterns = [
+                    # 成交/已售 + 数字
+                    r'(?:成交|已售|销量|月销|月成交|30天成交|90天成交)\s*[\d.]+\+?\s*(?:万)?\s*(?:笔|件|单)?',
+                    # "XXX笔" / "XXX件" / "XXX单"（短格式，需在文本前半部分）
+                    r'\d+\.?\d*万?\+?\s*[笔件单]',
+                    # "XXX人付款" 
+                    r'\d+\.?\d*万?\+?\s*人付款',
+                ]
+                for sp in sales_patterns:
+                    trade_match = re.search(sp, text)
+                    if trade_match:
+                        candidate = trade_match.group(0)
+                        # 二次验证：不能是价格（不含 ¥），不能是服务评分
+                        if not re.search(r'[¥￥]', candidate) and _is_valid_sales_text(candidate):
+                            sales_text = candidate
+                            sales_count = parse_sales(candidate)
+                            break
 
             # ── 公司名 ──
             shop_name = ""
@@ -384,6 +455,7 @@ return JSON.stringify(items);
     # ── 商品详情 ──────────────────────────────────────
 
     def get_product_detail(self, url: str) -> Optional[Product]:
+        """获取商品详情页信息（含销量）"""
         page = self._get_page()
         self._rate_limit()
         try:
@@ -395,16 +467,45 @@ return JSON.stringify(items);
                 var h1 = document.querySelector('h1');
                 var title = (h1 && h1.textContent || document.title || '').trim();
                 var body = (document.body && document.body.textContent || '');
+
+                // 价格
                 var p = body.match(/[¥￥]\\s*(\\d+(\\.\\d{1,2})?)/);
                 var price = p ? p[1] : '';
-                return JSON.stringify({title: title, price: price});
+
+                // 销量 — 1688 详情页常见格式
+                var salesText = '';
+                var salesPatterns = [
+                    /(?:成交|已售|销量|月销)\\s*[\\d.]+[万万千]?\\+?\\s*(?:笔|件|单)?/,
+                    /\\d+\\.?\\d*万?\\+?\\s*[笔件单]/,
+                    /(?:成交|已售)\\s*\\d+\\+?/,
+                    /\\d+\\+?\\s*人付款/
+                ];
+                for (var si = 0; si < salesPatterns.length; si++) {
+                    var m = body.match(salesPatterns[si]);
+                    if (m) { salesText = m[0]; break; }
+                }
+
+                // 店铺名
+                var shopText = '';
+                var shopEl = document.querySelector('[class*="shop"], [class*="company"], [class*="supplier"], [class*="seller"]');
+                if (shopEl) {
+                    shopText = (shopEl.textContent || '').trim().substring(0, 80);
+                }
+
+                return JSON.stringify({
+                    title: title, price: price, salesText: salesText, shopText: shopText
+                });
             """)
             if data:
                 d = json.loads(data)
+                sales_text = d.get("salesText", "")
                 return Product(
                     platform=self.platform,
                     title=clean_text(d.get("title", "")),
                     price=parse_price(d.get("price", "0")),
+                    sales_text=sales_text,
+                    sales_count=parse_sales(sales_text) if sales_text else 0,
+                    shop_name=clean_text(d.get("shopText", "")),
                     url=url,
                     first_seen=now_str(),
                     last_updated=now_str(),
@@ -412,6 +513,34 @@ return JSON.stringify(items);
         except Exception as e:
             logger.error(f"[1688] 详情失败: {e}")
         return None
+
+    # ── 批量补充销量（从详情页）────────────────────────
+
+    def enrich_sales_from_detail(
+        self, products: List[Product], max_enrich: int = 10
+    ) -> List[Product]:
+        """
+        对没有销量数据的商品，访问详情页获取销量。
+        max_enrich: 最多补充几个商品（每次访问耗时 3-5 秒）
+        """
+        no_sales = [p for p in products if p.sales_count == 0 and p.url]
+        if not no_sales:
+            return products
+
+        enrich_count = min(len(no_sales), max_enrich)
+        logger.info(f"[1688] 📋 {len(no_sales)} 个商品无销量，将补充前 {enrich_count} 个")
+
+        for i, product in enumerate(no_sales[:enrich_count]):
+            logger.info(f"[1688] 详情页 {i+1}/{enrich_count}: {product.title[:40]}...")
+            detail = self.get_product_detail(product.url)
+            if detail and detail.sales_count > 0:
+                product.sales_count = detail.sales_count
+                product.sales_text = detail.sales_text
+                product.last_updated = now_str()
+                logger.info(f"[1688]   → 销量: {product.display_sales()}")
+            self._rate_limit()
+
+        return products
 
     # ── 评论 ──────────────────────────────────────────
 
