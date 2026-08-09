@@ -21,7 +21,7 @@ print(response.read().decode("utf-8"))
 # readline()是一行一行的去读,只能读取一行
 print(response.readline().decode("utf-8"))
 # readlines()是一行一行的去读,返回一个列表
-print(response.readlines().decode("utf-8"))
+print(response.readlines())
 
 # getcode()获取状态码,返回200表示成功
 print(response.getcode())
